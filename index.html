@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Tanishka 💜</title>
+
+<style>
+:root {
+  --lavender: #c9a7ff;
+  --purple: #8055bd;
+  --deep: #17112f;
+  --pink: #ffb8df;
+  --cream: #fff7ff;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: var(--cream);
+  font-family: Georgia, "Times New Roman", serif;
+  background:
+    radial-gradient(ellipse at 20% 15%, #48346e 0%, transparent 45%),
+    radial-gradient(ellipse at 85% 80%, #452754 0%, transparent 45%),
+    linear-gradient(150deg, #100d24, #211438 55%, #151026);
+  overflow-x: hidden;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+  border: 0;
+  transition: transform .2s, filter .2s;
+}
+
+button:hover { transform: translateY(-2px); filter: brightness(1.08); }
+button:focus-visible { outline: 2px solid white; outline-offset: 4px; }
+
+#sky, #hearts {
+  position: fixed;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.star {
+  position: absolute;
+  color: white;
+  opacity: .75;
+  animation: twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .2; transform: scale(.8); }
+  to { opacity: 1; transform: scale(1.2); }
+}
+
+.float-heart {
+  position: absolute;
+  bottom: -40px;
+  color: var(--pink);
+  animation: rise 7s linear forwards;
+}
+
+@keyframes rise {
+  to { transform: translateY(-110vh) rotate(30deg); opacity: 0; }
+}
+
+main {
+  position: relative;
+  z-index: 1;
+  width: min(680px, 100%);
+  min-height: 100vh;
+  margin: auto;
+  padding: 26px 20px 45px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  color: #e3cbff;
+  font: 11px Arial, sans-serif;
+  margin-bottom: 18px;
+}
+
+h1 {
+  font-size: clamp(40px, 9vw, 68px);
+  font-weight: normal;
+  line-height: 1.08;
+  margin: 0 0 18px;
+}
+
+h2 { font-size: clamp(27px, 6vw, 39px); font-weight: normal; }
+
+p {
+  font-size: 17px;
+  line-height: 1.8;
+  color: #eee3ff;
+}
+
+.lilac { color: #e0c5ff; }
+.pink { color: #ffc5e8; }
+
+.panel {
+  width: 100%;
+  padding: 28px 23px;
+  margin-top: 22px;
+  background: #ffffff0c;
+  border: 1px solid #e2c9ff35;
+  border-radius: 25px;
+  box-shadow: 0 15px 60px #08051935;
+  backdrop-filter: blur(9px);
+}
+
+.primary {
+  background: linear-gradient(120deg, #e0c3ff, #ffcee9);
+  color: #37214e;
+  padding: 15px 25px;
+  border-radius: 40px;
+  font-weight: bold;
+  box-shadow: 0 6px 25px #c99cff30;
+  margin-top: 14px;
+}
+
+.secondary {
+  color: #f4e9ff;
+  background: #ffffff12;
+  border: 1px solid #e4caff50;
+  padding: 12px 19px;
+  border-radius: 30px;
+  margin: 6px;
+}
+
+.hidden { display: none !important; }
+
+#gameBoard {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 12px;
+  margin: 24px 0;
+}
+
+.star-card {
+  aspect-ratio: 1;
+  border-radius: 19px;
+  background: #d9b8ff12;
+  border: 1px solid #dfc4ff35;
+  color: #f6dcff;
+  font-size: 35px;
+  display: grid;
+  place-items: center;
+}
+
+.star-card.collected {
+  background: #e7caff25;
+  color: #ffcae9;
+  cursor: default;
+  animation: pop .3s ease;
+}
+
+@keyframes pop {
+  50% { transform: scale(1.13); }
+}
+
+.progress {
+  height: 7px;
+  background: #ffffff18;
+  border-radius: 20px;
+  overflow: hidden;
+  margin-top: 14px;
+}
+
+#bar {
+  width: 0%;
+  height: 100%;
+  background: linear-gradient(90deg, #c9a7ff, #ffb8df);
+  transition: width .3s;
+}
+
+.message {
+  color: #ffe0f1;
+  font-style: italic;
+  min-height: 48px;
+  font-size: 16px;
+}
+
+.gallery {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 12px;
+  margin: 22px 0;
+}
+
+.photo {
+  min-width: 0;
+  padding: 9px 9px 15px;
+  border-radius: 10px;
+  background: #fff6ff;
+  color: #5b3a72;
+  transform: rotate(-2deg);
+}
+
+.photo:nth-child(even) { transform: rotate(2deg); }
+
+.photo img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  display: block;
+  object-fit: cover;
+  background: #e5d4f3;
+  border-radius: 5px;
+}
+
+.photo span {
+  display: block;
+  padding-top: 11px;
+  font-size: 14px;
+}
+
+.letter {
+  text-align: left;
+  color: #4c355d;
+  background: #fff5fc;
+  border-radius: 7px;
+  padding: clamp(20px, 5vw, 34px);
+  margin-top: 22px;
+  box-shadow: 0 10px 35px #0002;
+  transform: rotate(-.5deg);
+}
+
+.letter p { color: #594467; font-size: 16px; line-height: 1.9; }
+.letter h2 { color: #8555a4; text-align: center; }
+.signature { text-align: right; color: #8555a4; font-style: italic; }
+
+footer { margin-top: 30px; color: #b9a6d0; font: 11px Arial, sans-serif; }
+
+@media (max-width: 400px) {
+  main { padding-left: 14px; padding-right: 14px; }
+  .panel { padding: 22px 16px; }
+  #gameBoard { gap: 8px; }
+  .star-card { font-size: 29px; }
+}
+</style>
+</head>
+
+<body>
+<div id="sky"></div>
+<div id="hearts"></div>
+
+<main>
+  <!-- INTRO -->
+  <section id="intro">
+    <div class="eyebrow">A little universe made for you</div>
+    <div style="font-size:48px;margin-bottom:16px">☾ ✧ ♡ ✧</div>
+    <h1>Happy Birthday,<br><span class="lilac">Tanishka</span></h1>
+    <p>
+      To my Bangaram,<br>
+      I've hidden a little something for you<br>
+      among the stars tonight.
+    </p>
+    <p class="pink" style="font-size:15px">Ready to discover your surprise?</p>
+    <button class="primary" onclick="startGame()">Enter our little universe ✨</button>
+  </section>
+
+  <!-- GAME -->
+  <section id="game" class="hidden">
+    <div class="eyebrow">Your little birthday quest</div>
+    <h2>Catch the <span class="lilac">stardust</span> ✨</h2>
+    <p>
+      I've hidden five magical stars for you.<br>
+      Tap them all to unlock your surprise, Bangaram.
+    </p>
+
+    <div class="panel">
+      <div><span id="count">0</span> / 5 stars collected 💜</div>
+      <div class="progress"><div id="bar"></div></div>
+      <div id="gameBoard"></div>
+      <div id="gameMessage" class="message">Psst... the stars are waiting for you.</div>
+    </div>
+    <button id="continue" class="primary hidden" onclick="showGallery()">
+      Your surprise awaits 💌
+    </button>
+  </section>
+
+  <!-- PHOTO GALLERY -->
+  <section id="gallery" class="hidden">
+    <div class="eyebrow">My favourite kind of magic</div>
+    <h2>That's my <span class="pink">Bangaram</span> ♡</h2>
+    <p>
+      The stars were pretty, but honestly?<br>
+      Nothing shines quite like you.
+    </p>
+
+    <div class="gallery">
+      <!-- Replace photo1.jpg etc. with your own uploaded photos -->
+      <div class="photo">
+        <img src="photo1.jpg" alt="A favourite picture of Tanishka"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div style="display:none;aspect-ratio:4/5;place-items:center;font-size:38px">🌷</div>
+        <span>My favourite smile ♡</span>
+      </div>
+      <div class="photo">
+        <img src="photo2.jpg" alt="A special memory"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div style="display:none;aspect-ratio:4/5;place-items:center;font-size:38px">🌙</div>
+        <span>My favourite person ♡</span>
+      </div>
+      <div class="photo">
+        <img src="photo3.jpg" alt="A happy memory together"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div style="display:none;aspect-ratio:4/5;place-items:center;font-size:38px">🧸</div>
+        <span>A moment to keep ♡</span>
+      </div>
+      <div class="photo">
+        <img src="photo4.jpg" alt="Another favourite memory"
+             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
+        <div style="display:none;aspect-ratio:4/5;place-items:center;font-size:38px">💗</div>
+        <span>Just you being you ♡</span>
+      </div>
+    </div>
+
+    <p class="pink">And now... one last little thing.</p>
+    <button class="primary" onclick="openLetter()">Open your letter 💌</button>
+  </section>
+
+  <!-- SECRET LETTER -->
+  <section id="finale" class="hidden">
+    <div class="eyebrow">Just between you and me</div>
+    <div style="font-size:44px">💌</div>
+    <h1 style="font-size:clamp(34px,8vw,53px)">For my <span class="pink">Bangaram</span></h1>
+
+    <div class="letter">
+      <h2>To my Tanishka ♡</h2>
+
+      <p>Happy birthday, my Bangaram. 💜</p>
+
+      <p>
+        If I could give you one thing in this world, it would be the ability
+        to see yourself through my eyes. Maybe then you'd understand just
+        how much I love you and how special you are to me.
+      </p>
+
+      <p>
+        You deserve all the happiness this universe has to offer, all the
+        little things that make you smile, and all the love your heart can
+        possibly hold.
+      </p>
+
+      <p>
+        I hope this new chapter of your life brings you beautiful memories,
+        dreams that come true, and a thousand reasons to smile. And I hope
+        I get to be beside you for as many of those moments as possible.
+      </p>
+
+      <p>
+        Out of all the stars in this enormous universe, I'm so glad that
+        somehow, in this lifetime, I got you. If I could choose all over
+        again, I'd still choose you, Bangaram.
+      </p>
+
+      <p>
+        Thank you for being you. Never forget how loved, precious, and
+        wonderful you are. Today is your day, but honestly, every day feels
+        a little more special because you're in my life.
+      </p>
+
+      <p>Happy birthday, my girl. I love you. ♡</p>
+
+      <p class="signature">
+        Forever cheering for you,<br>
+        Your favourite person (hopefully) 💜
+      </p>
+    </div>
+
+    <p class="pink">One last wish, just for you... ✨</p>
+    <button class="primary" onclick="finalWish()">Make a birthday wish 🌙</button>
+    <div id="wish" class="hidden">
+      <h2 class="pink">May all your wishes find their way to you. ♡</h2>
+      <p>And may you always remember that someone out here is wishing for your happiness, too.</p>
+      <div style="font-size:36px">☾ 💜 ✨ ♡ ✨ 💜 ☽</div>
+    </div>
+  </section>
+
+  <footer>made with love, just for Tanishka ♡</footer>
+</main>
+
+<script>
+const $ = id => document.getElementById(id);
+
+function show(id) {
+  ["intro", "game", "gallery", "finale"].forEach(section => {
+    $(section).classList.toggle("hidden", section !== id);
+  });
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+// Create the dreamy starry sky.
+for (let i = 0; i < 75; i++) {
+  const star = document.createElement("span");
+  star.className = "star";
+  star.textContent = Math.random() > .75 ? "✦" : "·";
+  star.style.left = Math.random() * 100 + "%";
+  star.style.top = Math.random() * 100 + "%";
+  star.style.fontSize = (8 + Math.random() * 12) + "px";
+  star.style.animationDelay = Math.random() * 3 + "s";
+  $("sky").appendChild(star);
+}
+
+// Floating hearts appear throughout the experience.
+function createHeart() {
+  const heart = document.createElement("span");
+  heart.className = "float-heart";
+  heart.textContent = ["♡", "♥", "✧", "💜"][Math.floor(Math.random() * 4)];
+  heart.style.left = Math.random() * 100 + "%";
+  heart.style.fontSize = (14 + Math.random() * 19) + "px";
+  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+  $("hearts").appendChild(heart);
+  setTimeout(() => heart.remove(), 10000);
+}
+setInterval(createHeart, 850);
+
+const sweetMessages = [
+  "A little star for the girl who lights up my world. 💜",
+  "If I could, I'd bottle up every one of your smiles. ♡",
+  "The universe did something right when it brought you into my life.",
+  "You deserve every beautiful thing this world has to offer. ✨",
+  "Five stars, one Bangaram, and a whole lot of love. 💌"
+];
+
+let collected = 0;
+
+function startGame() {
+  show("game");
+  if ($("gameBoard").children.length) return;
+
+  for (let i = 0; i < 9; i++) {
+    const btn = document.createElement("button");
+    btn.className = "star-card";
+    btn.textContent = ["✧", "☆", "⋆", "✦", "·"][i % 5];
+    btn.setAttribute("aria-label", "Find a magical star");
+
+    btn.onclick = () => {
+      if (btn.classList.contains("collected") || collected >= 5) return;
+
+      btn.classList.add("collected");
+      btn.textContent = "💜";
+      btn.disabled = true;
+
+      $("gameMessage").textContent = sweetMessages[collected];
+      collected++;
+      $("count").textContent = collected;
+      $("bar").style.width = (collected * 20) + "%";
+
+      if (collected === 5) {
+        $("gameMessage").textContent =
+          "You found all five stars! But the most precious thing in this universe is still you, Bangaram. ♡";
+        $("continue").classList.remove("hidden");
+        celebrate();
+      }
+    };
+
+    $("gameBoard").appendChild(btn);
+  }
+}
+
+function showGallery() {
+  show("gallery");
+  celebrate();
+}
+
+function openLetter() {
+  show("finale");
+  celebrate();
+}
+
+function finalWish() {
+  $("wish").classList.remove("hidden");
+  celebrate();
+}
+
+function celebrate() {
+  for (let i = 0; i < 18; i++) {
+    setTimeout(createHeart, i * 100);
+  }
+}
+</script>
+</body>
+</html>
