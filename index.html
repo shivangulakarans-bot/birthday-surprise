@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,7 +29,7 @@ body {
 button { font: inherit; cursor: pointer; }
 
 /* ===============================
-   THE NIGHT SKY
+   PIXEL BACKGROUND (drawn in JS)
 ================================ */
 
 #world {
@@ -39,242 +38,15 @@ button { font: inherit; cursor: pointer; }
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  background: linear-gradient(
-    180deg,
-    #0c0c27 0%,
-    #19133d 32%,
-    #302453 56%,
-    #42345f 73%,
-    #151c42 100%
-  );
+  background: #050918;
 }
 
-#stars { position: absolute; inset: 0; }
-
-.star {
+#scene, #fx {
   position: absolute;
-  width: 3px;
-  height: 3px;
-  background: #fff5d5;
-  box-shadow: 3px 0 #fff5d5, -3px 0 #fff5d5,
-              0 3px #fff5d5, 0 -3px #fff5d5;
-  opacity: 0;
-  animation: twinkle var(--duration) steps(2,end) infinite;
-  animation-delay: var(--delay);
-}
-
-.star.big {
-  width: 4px;
-  height: 4px;
-  background: white;
-  box-shadow: 4px 0 white, -4px 0 white,
-              0 4px white, 0 -4px white,
-              0 0 12px #d8c8ff;
-}
-
-@keyframes twinkle {
-  0%,100% { opacity: 0; transform: scale(.5); }
-  40% { opacity: 1; transform: scale(1); }
-  65% { opacity: .2; }
-}
-
-.shooting-star {
-  position: absolute;
-  top: 16%;
-  left: -100px;
-  width: 75px;
-  height: 2px;
-  opacity: 0;
-  transform: rotate(-28deg);
-  background: linear-gradient(90deg, transparent, #fff, #d8c8ff);
-  animation: shooting 9s linear infinite;
-  animation-delay: var(--delay);
-}
-
-@keyframes shooting {
-  0%, 78% { opacity: 0; transform: translate(0,0) rotate(-28deg); }
-  80% { opacity: 1; }
-  88% { opacity: 0; transform: translate(115vw,35vh) rotate(-28deg); }
-  100% { opacity: 0; }
-}
-
-/* Pixel moon */
-
-.moon {
-  position: absolute;
-  top: 8%;
-  right: 13%;
-  width: 76px;
-  height: 76px;
-  border-radius: 50%;
-  background: #fff0b9;
-  box-shadow: 0 0 0 7px #fff0b90c, 0 0 35px #fff0b933;
-}
-
-.moon::after {
-  content: "";
-  position: absolute;
-  left: 22px;
-  top: -12px;
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  background: #17133a;
-}
-
-.moon-pixels {
-  position: absolute;
-  top: 12%;
-  right: calc(13% + 54px);
-  width: 6px;
-  height: 6px;
-  background: #fff0b9;
-  box-shadow: 12px 12px #fff0b9, 0 24px #fff0b9;
-}
-
-/* Pixel clouds drift slowly */
-
-.cloud {
-  position: absolute;
-  height: 9px;
-  width: 55px;
-  background: #63557e;
-  opacity: .32;
-  box-shadow: 12px -9px #63557e, 24px -9px #63557e,
-              36px 0 #63557e, 48px 9px #63557e;
-  animation: cloudDrift 45s linear infinite;
-}
-
-.cloud.one { top: 19%; left: -100px; }
-.cloud.two {
-  top: 33%;
-  left: 25%;
-  transform: scale(.65);
-  animation-duration: 65s;
-  animation-delay: -30s;
-}
-
-@keyframes cloudDrift {
-  from { translate: -100px 0; }
-  to { translate: 120vw 0; }
-}
-
-/* ===============================
-   LANDSCAPE AND LAKE
-================================ */
-
-.landscape {
-  position: absolute;
-  bottom: 0;
   left: 0;
-  width: 100%;
-  height: 46vh;
-  min-height: 280px;
-}
-
-.landscape svg {
-  display: block;
-  width: 100%;
-  height: 100%;
-  shape-rendering: crispEdges;
-}
-
-/* Tree crowns sway, trunks stay grounded */
-
-.tree-crown {
-  transform-box: fill-box;
-  transform-origin: bottom center;
-  animation: treeSway 4.8s ease-in-out infinite;
-}
-
-.tree-crown.reverse { animation-direction: reverse; }
-
-@keyframes treeSway {
-  0%,100% { transform: rotate(-1.5deg); }
-  50% { transform: rotate(1.8deg); }
-}
-
-/* Layered water reflections */
-
-.ripple {
-  animation: rippleGlow var(--speed) steps(3,end) infinite;
-  animation-delay: var(--delay);
-}
-
-@keyframes rippleGlow {
-  0%,100% { opacity: .25; transform: translateX(-3px); }
-  50% { opacity: .9; transform: translateX(5px); }
-}
-
-/* Fireflies */
-
-.firefly {
-  position: absolute;
-  width: 4px;
-  height: 4px;
-  background: #d8ffbb;
-  box-shadow: 0 0 9px 3px #caff9c55;
-  animation: fireflyGlow 2.7s steps(2,end) infinite;
-  animation-delay: var(--delay);
-}
-
-@keyframes fireflyGlow {
-  0%,100% { opacity: .1; }
-  50% { opacity: 1; }
-}
-
-/* ===============================
-   GIANT LOTUS
-   Its own layer, above the lake.
-================================ */
-
-.lotus-stage {
-  position: absolute;
-  z-index: 2;
-  width: clamp(210px, 32vw, 390px);
-  right: clamp(10px, 8vw, 110px);
-  bottom: clamp(28px, 6vh, 70px);
-  animation: lotusFloat 4s ease-in-out infinite;
-  filter: drop-shadow(0 0 20px #ff91df55);
-}
-
-.lotus-stage svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-  shape-rendering: crispEdges;
-}
-
-@keyframes lotusFloat {
-  0%,100% { transform: translateY(0) rotate(-1deg); }
-  50% { transform: translateY(-9px) rotate(1deg); }
-}
-
-.lotus-halo {
-  animation: haloGlow 4s ease-in-out infinite;
-}
-
-@keyframes haloGlow {
-  0%,100% { opacity: .15; }
-  50% { opacity: .4; }
-}
-
-.lotus-water {
-  position: absolute;
-  width: 100%;
-  height: 7px;
-  left: 0;
-  bottom: 6%;
-  background: #ff9cde;
-  opacity: .25;
-  box-shadow: 20px 8px #eaa5ef, 75px -5px #eaa5ef,
-              150px 7px #eaa5ef;
-  animation: waterPulse 3s steps(3,end) infinite;
-}
-
-@keyframes waterPulse {
-  50% { opacity: .7; transform: scaleX(.85); }
+  top: 0;
+  image-rendering: crisp-edges;
+  image-rendering: pixelated;
 }
 
 /* ===============================
@@ -487,21 +259,7 @@ p {
   to { transform: translateY(110vh) rotate(360deg); opacity: 0; }
 }
 
-/* Mobile: lotus remains large and entirely inside the screen */
-
 @media(max-width:560px) {
-  .moon { width: 52px; height: 52px; top: 6%; right: 10%; }
-  .moon::after { width: 49px; height: 49px; left: 15px; top: -8px; }
-  .moon-pixels { right: calc(10% + 40px); }
-
-  .landscape { height: 34vh; min-height: 205px; }
-
-  .lotus-stage {
-    width: clamp(185px,57vw,255px);
-    right: 2%;
-    bottom: 22px;
-  }
-
   section { padding: 55px 14px 105px; }
   .panel { padding: 22px 16px; }
 
@@ -527,237 +285,8 @@ p {
 <body>
 
 <div id="world" aria-hidden="true">
-  <div id="stars"></div>
-  <div class="moon"></div>
-  <div class="moon-pixels"></div>
-  <div class="cloud one"></div>
-  <div class="cloud two"></div>
-
-  <div class="landscape">
-    <svg viewBox="0 0 1200 400" preserveAspectRatio="xMidYMax slice"
-         xmlns="http://www.w3.org/2000/svg">
-
-      <!-- Distant layered mountains -->
-      <path d="M0 170 L70 110 L130 155 L225 58 L310 145
-               L390 100 L470 170 L565 115 L660 165
-               L755 73 L840 150 L930 96 L1010 150
-               L1090 66 L1160 126 L1200 104 L1200 400 L0 400Z"
-            fill="#252345"/>
-
-      <path d="M0 185 L120 143 L190 184 L300 132 L400 187
-               L510 145 L615 187 L730 135 L835 181
-               L945 138 L1050 187 L1140 145 L1200 169
-               L1200 400 L0 400Z"
-            fill="#34305a"/>
-
-      <!-- Lake -->
-      <path d="M0 207 L1200 207 L1200 400 L0 400Z" fill="#172047"/>
-
-      <!-- Distant shore -->
-      <path d="M0 188 L120 183 L205 199 L300 190
-               L400 204 L505 192 L610 203 L710 189
-               L820 202 L920 190 L1025 205 L1120 192
-               L1200 200 L1200 228 L0 228Z"
-            fill="#30345e"/>
-
-      <!-- Moonlight reflections -->
-      <g fill="#c9c1ff">
-        <rect x="860" y="229" width="52" height="4" class="ripple" style="--speed:3s;--delay:0s"/>
-        <rect x="820" y="242" width="105" height="4" class="ripple" style="--speed:4s;--delay:-1s"/>
-        <rect x="880" y="256" width="72" height="4" class="ripple" style="--speed:3s;--delay:-2s"/>
-        <rect x="800" y="271" width="60" height="4" class="ripple" style="--speed:5s;--delay:-1s"/>
-        <rect x="850" y="285" width="115" height="4" class="ripple" style="--speed:3s;--delay:-2s"/>
-        <rect x="890" y="301" width="75" height="4" class="ripple" style="--speed:4s;--delay:-1s"/>
-        <rect x="820" y="316" width="95" height="4" class="ripple" style="--speed:5s;--delay:-3s"/>
-        <rect x="875" y="333" width="120" height="4" class="ripple" style="--speed:4s;--delay:-1s"/>
-        <rect x="835" y="350" width="75" height="4" class="ripple" style="--speed:3s;--delay:-2s"/>
-      </g>
-
-      <!-- Scattered water ripples -->
-      <g fill="#6575b9">
-        <rect x="55" y="244" width="90" height="4"/>
-        <rect x="195" y="266" width="48" height="4"/>
-        <rect x="130" y="295" width="100" height="4"/>
-        <rect x="270" y="323" width="70" height="4"/>
-        <rect x="65" y="351" width="110" height="4"/>
-        <rect x="400" y="245" width="80" height="4"/>
-        <rect x="470" y="282" width="85" height="4"/>
-        <rect x="370" y="354" width="100" height="4"/>
-        <rect x="1050" y="251" width="80" height="4"/>
-        <rect x="1000" y="318" width="100" height="4"/>
-      </g>
-
-      <!-- Left bank -->
-      <path d="M0 165 L90 157 L155 174 L213 169
-               L275 198 L330 215 L0 243Z" fill="#202443"/>
-
-      <!-- Right bank -->
-      <path d="M1200 159 L1115 170 L1060 185
-               L1000 178 L952 207 L1200 246Z" fill="#202443"/>
-
-      <!-- LEFT LARGE TREE -->
-      <g>
-        <rect x="119" y="126" width="17" height="105" fill="#493452"/>
-        <g class="tree-crown">
-          <rect x="101" y="104" width="55" height="42" fill="#293d48"/>
-          <rect x="81" y="120" width="95" height="35" fill="#31504d"/>
-          <rect x="104" y="82" width="60" height="42" fill="#3d6359"/>
-          <rect x="115" y="62" width="34" height="29" fill="#507560"/>
-          <rect x="89" y="133" width="27" height="18" fill="#426657"/>
-          <rect x="147" y="145" width="26" height="12" fill="#426657"/>
-          <rect x="130" y="115" width="9" height="9" fill="#73947b"/>
-        </g>
-      </g>
-
-      <!-- Small left tree -->
-      <g>
-        <rect x="226" y="158" width="12" height="71" fill="#493452"/>
-        <g class="tree-crown reverse">
-          <rect x="207" y="132" width="48" height="35" fill="#263c4a"/>
-          <rect x="195" y="145" width="72" height="28" fill="#31504d"/>
-          <rect x="212" y="112" width="38" height="30" fill="#426657"/>
-          <rect x="223" y="96" width="20" height="22" fill="#507560"/>
-        </g>
-      </g>
-
-      <!-- RIGHT TREES -->
-      <g>
-        <rect x="1030" y="137" width="18" height="94" fill="#493452"/>
-        <g class="tree-crown reverse">
-          <rect x="1005" y="110" width="65" height="45" fill="#293d48"/>
-          <rect x="990" y="125" width="100" height="40" fill="#31504d"/>
-          <rect x="1015" y="85" width="65" height="42" fill="#3d6359"/>
-          <rect x="1030" y="65" width="35" height="27" fill="#507560"/>
-          <rect x="990" y="143" width="30" height="15" fill="#426657"/>
-          <rect x="1060" y="148" width="28" height="12" fill="#426657"/>
-        </g>
-      </g>
-
-      <g>
-        <rect x="1120" y="158" width="12" height="70" fill="#493452"/>
-        <g class="tree-crown">
-          <rect x="1100" y="133" width="50" height="35" fill="#263c4a"/>
-          <rect x="1087" y="146" width="75" height="28" fill="#31504d"/>
-          <rect x="1105" y="113" width="40" height="30" fill="#426657"/>
-          <rect x="1117" y="95" width="22" height="22" fill="#507560"/>
-        </g>
-      </g>
-
-      <!-- Lily pads -->
-      <g fill="#43816e">
-        <path d="M590 329 h50 v7 h-60 v-7Z"/>
-        <rect x="640" y="344" width="44" height="6"/>
-        <rect x="705" y="326" width="38" height="7"/>
-        <rect x="600" y="357" width="34" height="6"/>
-      </g>
-
-      <!-- Foreground shore -->
-      <path d="M0 376 L100 366 L180 378 L280 369
-               L380 382 L470 372 L570 380
-               L660 370 L760 380 L860 369
-               L960 380 L1060 370 L1200 378
-               L1200 400 L0 400Z" fill="#151a3d"/>
-
-      <!-- Grass and tiny flowers -->
-      <g fill="#41665b">
-        <rect x="25" y="365" width="12" height="10"/>
-        <rect x="42" y="356" width="8" height="18"/>
-        <rect x="270" y="367" width="9" height="13"/>
-        <rect x="285" y="359" width="8" height="19"/>
-        <rect x="940" y="369" width="12" height="10"/>
-        <rect x="956" y="359" width="8" height="20"/>
-        <rect x="1160" y="369" width="12" height="10"/>
-        <rect x="1175" y="359" width="8" height="19"/>
-      </g>
-      <g fill="#ffb6df">
-        <rect x="68" y="367" width="5" height="5"/>
-        <rect x="304" y="369" width="5" height="5"/>
-        <rect x="974" y="370" width="5" height="5"/>
-      </g>
-    </svg>
-  </div>
-
-  <!-- Fireflies on top of the landscape -->
-  <div class="firefly" style="left:9%;top:73%;--delay:-1s"></div>
-  <div class="firefly" style="left:20%;top:81%;--delay:-2s"></div>
-  <div class="firefly" style="left:78%;top:75%;--delay:-.5s"></div>
-  <div class="firefly" style="left:90%;top:84%;--delay:-1.5s"></div>
-
-  <!-- BIG LOTUS: separate from trees and lake SVG -->
-  <div class="lotus-stage" aria-hidden="true">
-    <svg viewBox="0 0 340 250" xmlns="http://www.w3.org/2000/svg">
-      <ellipse class="lotus-halo" cx="170" cy="160" rx="135" ry="67" fill="#ff8ed9"/>
-
-      <!-- Water shadow -->
-      <ellipse cx="170" cy="204" rx="105" ry="13" fill="#0e183c"/>
-
-      <!-- Lily pads -->
-      <path d="M28 196 H89 V207 H40 V216 H15 V204 H28Z" fill="#397e69"/>
-      <path d="M221 203 H291 V211 H310 V218 H239 V212 H221Z" fill="#43876d"/>
-      <path d="M104 218 H144 V224 H104Z" fill="#579476"/>
-
-      <!-- Rear petals -->
-      <g fill="#c75fb5">
-        <path d="M142 175 V135 H130 V112 H143 V89 H157 V65 H170 V106 H183 V72 H196 V100 H210 V128 H222 V162 H207 V180Z"/>
-        <rect x="111" y="141" width="20" height="29"/>
-        <rect x="210" y="137" width="22" height="30"/>
-      </g>
-
-      <!-- Main large outer petals -->
-      <g fill="#eb83d0">
-        <path d="M57 183 V159 H75 V139 H93 V123 H109 V139 H124 V159 H140 V184Z"/>
-        <path d="M200 184 V157 H214 V135 H232 V122 H248 V143 H265 V161 H284 V184Z"/>
-        <path d="M95 178 V145 H109 V119 H126 V101 H141 V127 H154 V155 H166 V184Z"/>
-        <path d="M174 184 V151 H185 V122 H199 V103 H216 V126 H231 V153 H247 V181Z"/>
-      </g>
-
-      <!-- Tall central petals -->
-      <g fill="#ffb4e8">
-        <path d="M123 181 V148 H137 V118 H150 V91 H164 V123 H176 V148 H190 V181Z"/>
-        <path d="M151 179 V137 H162 V106 H176 V82 H190 V116 H201 V151 H215 V180Z"/>
-      </g>
-
-      <!-- Inner petals -->
-      <g fill="#ffd5f2">
-        <path d="M111 184 V160 H126 V136 H142 V120 H154 V148 H165 V183Z"/>
-        <path d="M158 183 V145 H171 V119 H185 V138 H198 V159 H214 V183Z"/>
-        <rect x="143" y="137" width="18" height="39"/>
-        <rect x="177" y="134" width="18" height="42"/>
-      </g>
-
-      <!-- Golden centre -->
-      <g fill="#ffe59a">
-        <rect x="143" y="157" width="18" height="15"/>
-        <rect x="160" y="146" width="20" height="29"/>
-        <rect x="179" y="157" width="17" height="15"/>
-        <rect x="151" y="173" width="38" height="9"/>
-      </g>
-
-      <g fill="#fff8d4">
-        <rect x="162" y="151" width="10" height="10"/>
-        <rect x="177" y="159" width="7" height="7"/>
-        <rect x="150" y="163" width="7" height="7"/>
-      </g>
-
-      <!-- Pixel sparkles -->
-      <g fill="#fff0ff">
-        <rect x="75" y="116" width="7" height="7"/>
-        <rect x="92" y="97" width="5" height="5"/>
-        <rect x="241" y="101" width="7" height="7"/>
-        <rect x="265" y="126" width="5" height="5"/>
-        <rect x="119" y="74" width="6" height="6"/>
-        <rect x="216" y="66" width="7" height="7"/>
-      </g>
-
-      <!-- Lotus reflection on the water -->
-      <g fill="#dc84d3" opacity=".75">
-        <rect x="131" y="222" width="16" height="4"/>
-        <rect x="155" y="229" width="36" height="4"/>
-        <rect x="202" y="222" width="20" height="4"/>
-      </g>
-    </svg>
-    <div class="lotus-water"></div>
-  </div>
+  <canvas id="scene"></canvas>
+  <canvas id="fx"></canvas>
 </div>
 
 <div id="heart-rain"></div>
@@ -769,7 +298,7 @@ p {
       <p class="subtitle">✦ A LITTLE WORLD MADE JUST FOR YOU ✦</p>
       <h1>Happy Birthday,<br>Tanishka! ♡</h1>
       <p>To my Bangaram, my favourite person in every universe.</p>
-      <p>I've made you a little adventure. Find your way through the night and discover what's waiting for you.</p>
+      <p>I've made you a cute little adventure. Find your way through the maze!!</p>
       <p style="color:#ffe3a9">★ Objective: Find the heart ★</p>
       <button class="pixel-button" onclick="startGame()">START OUR ADVENTURE ♡</button>
     </div>
@@ -779,7 +308,7 @@ p {
     <div class="panel">
       <p class="subtitle">✦ LEVEL 01 · THE MOONLIT PATH ✦</p>
       <h2>Find your way to me ♡</h2>
-      <p>Every path leads somewhere. This one leads to a little surprise.</p>
+      <p>Every path leads somewhere. This one leads to a cutie surprise.</p>
       <div id="maze" aria-label="Maze game"></div>
 
       <div class="controls" aria-label="Maze controls">
@@ -799,7 +328,7 @@ p {
   <section id="gallery">
     <div class="panel">
       <p class="subtitle">✦ LEVEL COMPLETE ✦</p>
-      <h1>You found the heart! ♡</h1>
+      <h1>You found a heart! ♡</h1>
       <p>And somehow, I found mine in you.</p>
       <p class="gallery-note">Four little snapshots of my favourite person.</p>
 
@@ -814,11 +343,11 @@ p {
         </div>
         <div class="photo-card">
           <div class="photo-frame"><img src="photo3.jpg" alt="A special moment" loading="lazy"></div>
-          <p>A moment to keep ♡</p>
+          <p>such a cutsie pic of you!!! ♡</p>
         </div>
         <div class="photo-card">
           <div class="photo-frame"><img src="photo4.jpg" alt="Another favourite memory" loading="lazy"></div>
-          <p>Just you being you ♡</p>
+          <p>My favvvvv eyes UGHHHH ♡</p>
         </div>
       </div>
 
@@ -838,29 +367,31 @@ p {
           I wish I could put into words just how much you mean to me.
           Sometimes I think about how lucky I am that, out of all the
           people in this world, I get to know you, love you, and make
-          memories with you.
+          cutesy memories with you.
         </p>
         <p>
           You're my oxygen, my soulmate, my dream, my heartbeat,
-          my best friend, my partner, my everything.
+          my best friend, my partner, my everything. You truly are
+          the biggest blessing of my life right now and I could not be
+          any happier my babyyyyy!!!
         </p>
         <p>
-          I hope this new year of your life brings you the happiness
+          I hope our new chapter of your life brings you the happiness
           you deserve, the confidence to chase every dream you have,
-          and a thousand little reasons to smile. And whenever life
-          gets difficult, I hope you remember that you don't have to
-          face everything alone.
+          and a million reasons to smile. I hope I can be there and 
+          cherish all the happy memories you've made.
         </p>
         <p>
           No matter how many birthdays come and go, I want to keep
           celebrating you. The little things about you, the things
-          that make you laugh, your dreams, your silly moments, and
-          all the beautiful parts of you that make you who you are.
+          that make you laught and smile, your dreams, your silly
+          moments, and all the beautiful parts of you that make you who you are.
         </p>
         <p>
           If I could wish for one thing, it would be that you could
-          see yourself through my eyes, even for a moment. You would
-          understand why you mean so much to me.
+          see yourself through my eyes, even for a few seconds. You would
+          understand why you mean so much to me. I love you soooo much bangaram
+          no matter how many times I say it, its never enough. You are my world
         </p>
         <p>
           Happy birthday, my Bangaram. Thank you for being you.
@@ -872,36 +403,430 @@ p {
       <button class="pixel-button" onclick="finalWish()">ONE LAST THING ♡</button>
       <div id="final-message">
         Happy birthday, my Bangaram! 💜<br>
-        I'd choose you, every single time. ♡<br>
+        Have a blessed birthday daarlingggggg~ ♡<br>
         <span style="font-size:2rem">♥</span>
       </div>
     </div>
   </section>
 </main>
+<script>
+(function () {
+'use strict';
+const sceneC = document.getElementById('scene'), fxC = document.getElementById('fx');
+const sctx = sceneC.getContext('2d'), fctx = fxC.getContext('2d');
+let W, H, PX, Wc, ox, yh, buf, A, lights, timer, ft = 0;
+
+const BAYER = [0,8,2,10,12,4,14,6,3,11,1,9,15,7,13,5];
+const cache = {};
+function C(h){ if (typeof h !== 'string') return h; return cache[h] || (cache[h] = [parseInt(h.slice(1,3),16), parseInt(h.slice(3,5),16), parseInt(h.slice(5,7),16)]); }
+const lerp = (a,b,t) => a + (b-a)*t;
+const cl = (v,a,b) => Math.max(a, Math.min(b, v));
+const thr = (x,y) => (BAYER[((y&3)<<2)|(x&3)] + .5) / 16;
+function rng(seed){ return function(){ seed|=0; seed=seed+0x6D2B79F5|0; let t=Math.imul(seed^seed>>>15,1|seed); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
+function hash(a,b){ let h=Math.imul(a|0,374761393)+Math.imul(b|0,668265263); h=Math.imul(h^(h>>>13),1274126177); return ((h^(h>>>16))>>>0)/4294967296; }
+
+function set(x,y,c){ x=Math.round(x); y=Math.round(y); if(x<0||y<0||x>=W||y>=H) return; c=C(c); const i=(y*W+x)*4; buf[i]=c[0]; buf[i+1]=c[1]; buf[i+2]=c[2]; buf[i+3]=255; }
+function mix(x,y,c,a){ x=Math.round(x); y=Math.round(y); if(x<0||y<0||x>=W||y>=H) return; c=C(c); const i=(y*W+x)*4; buf[i]+=(c[0]-buf[i])*a; buf[i+1]+=(c[1]-buf[i+1])*a; buf[i+2]+=(c[2]-buf[i+2])*a; }
+function rect(x,y,w,h,c){ x=Math.round(x); y=Math.round(y); w=Math.round(w); h=Math.round(h); for(let j=0;j<h;j++) for(let i=0;i<w;i++) set(x+i,y+j,c); }
+function disc(cx,cy,rx,ry,c,a){
+  rx=Math.max(.5,rx); ry=Math.max(.5,ry);
+  for(let y=Math.floor(cy-ry); y<=Math.ceil(cy+ry); y++) for(let x=Math.floor(cx-rx); x<=Math.ceil(cx+rx); x++){
+    const dx=(x-cx)/rx, dy=(y-cy)/ry; if(dx*dx+dy*dy>1) continue;
+    const col = typeof c==='function' ? c(x-cx,y-cy) : c; if(!col) continue;
+    if(a!==undefined && a<1) mix(x,y,col,a); else set(x,y,col);
+  }
+}
+function petal(cx,cy,ang,len,w,col,hi){
+  const a=ang*Math.PI/180, dx=Math.sin(a), dy=-Math.cos(a), px=-dy, py=dx, n=Math.ceil(len*1.6);
+  for(let i=0;i<=n;i++){
+    const k=i/n, half=w*Math.sin(Math.PI*Math.pow(k,.75));
+    for(let s=-half; s<=half+.01; s+=.5){
+      set(cx+dx*len*k+px*s, cy+dy*len*k+py*s, (hi && s < -half*.35) ? hi : col);
+    }
+  }
+}
+
+const X = u => ox + u*Wc;
+function pathAt(y){
+  const t = cl((H-1-y)/(H-1-yh),0,1);
+  const cx = X(lerp(.6,.5,t) + .2*Math.sin(Math.PI*Math.pow(t,.8)));
+  const hw = .5*Wc*lerp(.72,.04,Math.pow(t,.9));
+  return {cx, hw, t};
+}
+function topY(x){
+  const u=(x-ox)/Wc; let a;
+  if(u<.12) a=.15; else if(u<.38) a=lerp(.15,.34,(u-.12)/.26); else if(u<.58) a=.34; else a=lerp(.34,-.08,cl((u-.58)/.3,0,1));
+  return a*H + Math.abs(Math.sin(x*.21))*3.2 + Math.sin(x*.07+1)*2.5 + hash(x,5)*1.6;
+}
+
+/* ---------- sky, moon, stars ---------- */
+function sky(){
+  const st=['#050918','#09112f','#12215a','#213a74','#35558c'];
+  for(let y=0;y<=yh+2;y++){
+    const t=cl(y/yh,0,1)*(st.length-1), i=Math.min(st.length-2,Math.floor(t)), f=t-i;
+    for(let x=0;x<W;x++) set(x,y,f>thr(x,y)?st[i+1]:st[i]);
+  }
+}
+function moon(){
+  const mx=Math.round(X(.39)), my=Math.round(.115*H), r=Math.max(4,Math.round(.078*Wc));
+  A.moon={mx,my,r};
+  for(let y=my-r*3;y<=my+r*3;y++) for(let x=mx-r*3;x<=mx+r*3;x++){
+    const d=Math.hypot(x-mx,y-my);
+    if(d>r && d<r*2.8){ const a=Math.pow(1-(d-r)/(r*1.8),2); if(a>thr(x,y)) mix(x,y,'#9fb4ee',.32); }
+  }
+  const cr=[[-.3,-.3,.3],[.3,-.4,.2],[.15,.3,.32],[-.5,.2,.18],[.5,.15,.16]];
+  disc(mx,my,r,r,(dx,dy)=>{
+    let c=(dx+dy)/r>.55?'#e4e2c8':'#f7f4dc';
+    for(const q of cr){ if(Math.hypot(dx/r-q[0],dy/r-q[1])<q[2]){ c=(dx+dy)/r>.3?'#c4c8b2':'#d3d6bf'; break; } }
+    return c;
+  });
+}
+function canopy(){
+  for(let x=0;x<W;x++){
+    const top=Math.round(topY(x));
+    for(let y=Math.max(0,top-4);y<=yh+1;y++){
+      const d=y-top, n=hash(x>>1,y>>1), n2=hash(x,y); let c;
+      if(d<0) c = n2>.45?'#133540':'#0f2a34';
+      else if(d<5){ c = n>.7?'#0e2b2a':'#0a1f24'; if(n2>.92) c='#1a4a46'; }
+      else { c = n>.88?'#0c2423':n>.7?'#081a1d':'#050f14'; if(n2>.985) c='#16413a'; }
+      set(x,y,c);
+      if(y>yh-6 && thr(x,y)<(y-(yh-6))/14) mix(x,y,'#2c4d72',.3);
+    }
+  }
+}
+function stars(R){
+  const n=Math.round(W*yh/65);
+  for(let i=0;i<n;i++){
+    const x=Math.floor(R()*W), y=Math.floor(R()*yh*.92), big=R()>.85, tw=R()<.4;
+    if(y>topY(x)-3 || Math.hypot(x-A.moon.mx,y-A.moon.my)<A.moon.r*2.8) continue;
+    if(tw) A.twStars.push({x,y,big,sp:.8+R()*2.4,ph:R()*6.28});
+    else { set(x,y,big?'#ffffff':R()>.5?'#c9d6ff':'#8fa4d8'); if(big){ mix(x-1,y,'#9fb2ee',.6); mix(x+1,y,'#9fb2ee',.6); mix(x,y-1,'#9fb2ee',.6); mix(x,y+1,'#9fb2ee',.6); } }
+  }
+}
+function redTree(cx,cy,r,R){
+  for(let i=0;i<24;i++){
+    const a=R()*6.28, d=R()*r, x=cx+Math.cos(a)*d*1.3, y=cy+Math.sin(a)*d*.9, rr=2+R()*r*.32;
+    disc(x,y,rr*1.2,rr,(dx,dy)=>{ const l=(-dx-dy)/(rr*1.4)+hash(Math.round(x+dx)*3,Math.round(y+dy)*5)*.45;
+      return l>.55?'#e08a3a':l>.2?'#b84f24':l>-.3?'#7e2c1a':'#4d1a14'; });
+  }
+}
+function distantLamps(R){
+  for(let i=0;i<7;i++){
+    const x=Math.round(X(.05+R()*.42)), y=yh-1+Math.round(R()*2);
+    set(x,y,'#ffcf6a'); mix(x-1,y,'#ffb050',.45); mix(x+1,y,'#ffb050',.45); mix(x,y-1,'#ffb050',.35);
+    A.lan.push({x,y,w:1,h:1,sp:1+R()*2,ph:R()*6,far:true});
+  }
+}
+
+/* ---------- ground, water, path ---------- */
+function rows(){
+  const rowBase=Wc*.07, bandOf=[], bnd=[];
+  let acc=0;
+  for(let y=H-1;y>=yh-1;y--){
+    const t=cl((H-1-y)/(H-1-yh),0,1), step=1/(lerp(1,.28,t)*rowBase), prev=Math.floor(acc);
+    acc+=step; bandOf[y]=Math.floor(acc); bnd[y]=bandOf[y]!==prev;
+  }
+  const wst=['#1d4070','#13305c','#0b1f43','#061230'];
+  const pal=['#4e5a68','#586574','#455160','#5f6c7b','#3f4a58'];
+  for(let y=yh;y<H;y++){
+    const p=pathAt(y), wy=(y-yh)/(H-yh);
+    const pl=Math.round(p.cx-p.hw+(hash(y,3)-.5)*1.6), pr=Math.round(p.cx+p.hw+(hash(y,9)-.5)*1.6);
+    const wt=cl(wy,0,1)*(wst.length-1), wi=Math.min(wst.length-2,Math.floor(wt)), wf=wt-wi;
+    const N=Math.max(3,Math.round(lerp(7,2.5,p.t)));
+    const colAt=(x,yy)=>Math.floor(((x-p.cx)/(2*p.hw))*N+(bandOf[yy]&1?.5:0)+50);
+    for(let x=0;x<W;x++){
+      if(x<pl){
+        set(x,y,wf>thr(x,y)?wst[wi+1]:wst[wi]);
+        const d=y-yh; if(d<8 && thr(x,y)<(1-d/8)*.8) mix(x,y,'#04121a',.7);
+      } else if(x>pr){
+        const n=hash(x>>1,y>>1);
+        set(x,y,n>.9?'#143a24':n>.6?'#0b2417':'#07170f');
+      } else {
+        const c0=colAt(x,y), mort=(xx)=>colAt(xx,y)!==colAt(xx-1,y)||bnd[y];
+        if(x===pl||x===pr){ set(x,y,'#161c26'); continue; }
+        if(mort(x)){ set(x,y,'#171d27'); continue; }
+        const b=bandOf[y], n=hash(c0*7+b*13,b);
+        let c=pal[Math.floor(n*pal.length)];
+        if(mort(x-1)||bnd[y-1]) c='#7a8795';
+        else if(mort(x+1)||bnd[y+1]) c='#323c49';
+        else if(n>.94) c='#3b5a45';
+        set(x,y,c);
+      }
+    }
+  }
+}
+function waterDetails(R){
+  const cnt=Math.round(W*H/110);
+  for(let i=0;i<cnt;i++){
+    const y=yh+3+Math.floor(Math.pow(R(),1.3)*(H-yh-4)), p=pathAt(y), x=Math.floor(R()*W);
+    const len=Math.round((2+R()*7)*(.6+(y-yh)/(H-yh)*1.4));
+    if(x+len<p.cx-p.hw-3) for(let k=0;k<len;k++) mix(x+k,y,'#3a6ea8',.45);
+  }
+  const mxm=A.moon.mx;
+  for(let y=yh+3;y<.8*H;y+=2){
+    const p=pathAt(y), wy=(y-yh)/(H-yh), w=Math.round((2+hash(y,2)*7)*(.8+wy*1.6));
+    const x=Math.round(mxm+(hash(y,11)-.5)*(4+wy*10)-w/2);
+    if(x+w<p.cx-p.hw-3){ A.shim.push({x,y,w,sp:1+R()*2,ph:R()*6,warm:false}); for(let k=0;k<w;k++) mix(x+k,y,'#cfd8ff',.3); }
+  }
+  for(let i=0;i<10;i++){
+    const y=Math.round((.52+R()*.12)*H), p=pathAt(y), w=2+Math.round(R()*4), x=Math.round(p.cx-p.hw-5-R()*12);
+    if(x>0){ A.shim.push({x,y,w,sp:1.5+R()*2,ph:R()*6,warm:true}); for(let k=0;k<w;k++) mix(x+k,y,'#ff9a40',.3); }
+  }
+}
+function pad(cx,cy,r,flip){
+  const ry=Math.max(1,r*.42);
+  disc(cx,cy,r,ry,(dx,dy)=>{
+    if(dx*flip>r*.15 && Math.abs(dy)<=(dx*flip/r)*ry*.45+.3) return null;
+    if(dy<-ry*.55) return '#4b9a62';
+    if(dy>ry*.35) return '#1a4a31';
+    return hash(Math.round(dx+cx),Math.round(dy+cy))>.8?'#2a6b44':'#30784c';
+  });
+}
+function pads(R){
+  const cnt=Math.round(W*H/170);
+  for(let i=0;i<cnt;i++){
+    const y=Math.round(yh+4+Math.pow(R(),.85)*(H-yh-6)), wy=(y-yh)/(H-yh);
+    const r=Math.max(1.5,(1.2+wy*.075*Wc)*(.6+R()*.8)), p=pathAt(y), x=Math.round(R()*W);
+    if(x+r<p.cx-p.hw-2) pad(x,y,r,R()>.5?1:-1);
+  }
+}
+function rocks(){
+  let y=H-2;
+  while(y>yh+3){
+    const p=pathAt(y), rr=Math.max(1,Math.round(lerp(.05,.012,p.t)*Wc));
+    const cx=Math.round(p.cx-p.hw-rr*.3), cy=y-Math.round(rr*.6);
+    disc(cx,cy,rr*1.3,rr*.85,(dx,dy)=>{
+      const l=(-dx/(rr*1.3)-dy/(rr*.85))*.7+hash(Math.round(dx*3+cx),Math.round(dy*5+cy))*.3;
+      return l>.45?'#7d8996':l>0?'#586573':l>-.5?'#3f4a58':'#262e3a';
+    });
+    y-=Math.max(2,Math.round(rr*1.5));
+  }
+}
+function bank(){
+  for(let x=0;x<W;x++){
+    const u=(x-ox)/Wc; if(u<-.05||u>.17) continue;
+    const f=u<0?cl((u+.05)/.05,0,1):cl(1-u/.17,0,1), bb=Math.round(yh+.09*H*f);
+    for(let y=yh-1;y<bb;y++){ const n=hash(x>>1,y); set(x,y,n>.85?'#14301d':n>.5?'#0c2016':'#08150f'); }
+    if(hash(x,77)>.55) set(x,bb,'#1d4a2a');
+  }
+}
+function bushes(R){
+  const cnt=Math.round(W*H/140);
+  for(let i=0;i<cnt;i++){
+    const y=yh+Math.floor(R()*(H-yh)), p=pathAt(y), x=Math.floor(R()*W);
+    if(x<=p.cx+p.hw+4) continue;
+    const rr=1.5+((y-yh)/(H-yh))*.045*Wc*(.6+R()*.7);
+    disc(x,y,rr*1.2,rr,(dx,dy)=>{
+      const l=(-dx-dy)/(rr*1.2)+hash(Math.round(x+dx),Math.round(y+dy))*.4;
+      return l>.55?'#2a6a3c':l>.2?'#174a2c':l>-.3?'#0d3020':'#071a11';
+    });
+  }
+  for(let i=0;i<30;i++){
+    const y=yh+4+Math.floor(R()*(H-yh-4)), p=pathAt(y), x=Math.floor(R()*W);
+    if(x>p.cx+p.hw+5) set(x,y,R()>.5?'#a4521f':'#c97a2a');
+  }
+}
+function leaves(R){
+  for(let i=0;i<70;i++){
+    const y=yh+4+Math.floor(R()*(H-yh-4)), p=pathAt(y), x=Math.round(p.cx+(R()-.5)*(p.hw*1.8)), big=(y-yh)/(H-yh)>.55;
+    const c=['#d8a23a','#e0b050','#b87a2a'][Math.floor(R()*3)];
+    set(x,y,c); if(big){ set(x+1,y,c); if(R()>.5) set(x,y+1,c); }
+  }
+}
+
+/* ---------- sprites ---------- */
+function lotusList(R){
+  const out=[], base=[[.13,.91],[.31,.82],[.10,.72],[.26,.665],[.05,.61],[.40,.59],[.18,.585]];
+  const add=(u,yf)=>{ const y=Math.round(yf*H), k=cl((y-yh)/(H-yh),0,1); out.push({x:Math.round(X(u)),y,L:Math.max(3,Wc*lerp(.02,.14,Math.pow(k,1.25)))}); };
+  base.forEach(b=>add(b[0],b[1]));
+  const ys=[.88,.7,.62,.8,.66,.93]; let i=0;
+  for(let u=-.2; X(u)>6; u-=.28) add(u, ys[i++%ys.length]+(R()-.5)*.03);
+  return out.filter(l=>{ const p=pathAt(l.y); return l.x+l.L*1.1<p.cx-p.hw && l.x-l.L>0; }).sort((a,b)=>a.y-b.y);
+}
+function drawLotus(l){
+  const {x:cx,y:cy,L}=l;
+  disc(cx,cy+L*.12,L*1.0,L*.28,'#050d22',.6);
+  [-78,-50,50,78].forEach(a=>petal(cx,cy,a,L*.8,L*.2,'#8f2340','#b0304a'));
+  [-62,-32,32,62].forEach(a=>petal(cx,cy,a,L*.95,L*.24,'#d13e52','#ee6a68'));
+  [-35,0,35].forEach(a=>petal(cx,cy,a,L,L*.24,'#ee5a5a','#ff8b7e'));
+  [-18,18].forEach(a=>petal(cx,cy,a,L*.6,L*.17,'#ff9a78','#ffc79a'));
+  disc(cx,cy-L*.12,L*.2,L*.14,'#ffd36a');
+  set(cx,cy-L*.16,'#fff0a8');
+}
+function drawLantern(o){
+  const {x,y,h}=o, w=Math.max(3,Math.round(h*.5)), capH=Math.max(1,Math.round(h*.16)), baseH=Math.max(1,Math.round(h*.14)), bodyH=h-capH-baseH, left=Math.round(x-w/2);
+  const top=y-h;
+  rect(left-1,y,w+2,Math.max(1,Math.round(h*.2)),'#2c3440');
+  set(x,top-1,'#2a160c');
+  rect(left-1,top,w+2,capH,'#2a160c');
+  rect(left,top+capH,w,bodyH,'#ffb347');
+  if(w>=4) rect(left+1,top+capH,w-2,bodyH,'#ffe3a0');
+  rect(left,top+capH,1,bodyH,'#6b3d1c'); rect(left+w-1,top+capH,1,bodyH,'#6b3d1c');
+  if(bodyH>5) rect(left,top+capH+Math.floor(bodyH/2),w,1,'#9a5a22');
+  rect(left-1,y-baseH,w+2,baseH,'#2a160c');
+  A.lan.push({x:left+1,y:top+capH,w:Math.max(1,w-2),h:bodyH,sp:1.2+hash(x,y)*2,ph:hash(y,x)*6});
+}
+function pavilion(){
+  const cx=Math.round(X(.745)), by=Math.round(.465*H), pil=Math.round(.19*Wc), rh=Math.round(.17*Wc), rw=Math.round(.52*Wc);
+  const top=by-pil, pw=Math.max(2,Math.round(.018*Wc));
+  const px=[-.17,-.06,.06,.17].map(f=>Math.round(cx+f*Wc)), left=px[0], right=px[3];
+  // platform
+  rect(left-3,by,right-left+6,3,'#3d4252'); rect(left-3,by,right-left+6,1,'#6b7387'); rect(left-1,by+3,right-left+2,1,'#232734');
+  // glowing interior
+  const inTop=top+2, railH=Math.max(2,Math.round(pil*.22)), inBot=by-railH;
+  for(let y=inTop;y<inBot;y++){ const f=(y-inTop)/Math.max(1,inBot-inTop);
+    for(let x=left;x<=right;x++) set(x,y,f+(thr(x,y)-.5)*.5>.55?'#e08a38':'#ffc766'); }
+  set(Math.round((px[1]+px[2])/2),inTop+2,'#fff0b0'); set(Math.round((px[0]+px[1])/2),inTop+2,'#fff0b0'); set(Math.round((px[2]+px[3])/2),inTop+2,'#fff0b0');
+  // railing
+  rect(left,inBot,right-left+1,railH,'#3a1710'); rect(left,inBot,right-left+1,1,'#8c3a22');
+  for(let x=left;x<=right;x+=2) rect(x,inBot+1,1,railH-1,'#6b2a1a');
+  // pillars
+  px.forEach((x,i)=>{ const front=(i===0||i===3), x0=x-Math.floor(pw/2);
+    rect(x0,top,pw,by-top,front?'#8c3a22':'#6b2a1a');
+    rect(x0,top,1,by-top,front?'#c2623a':'#8c3a22');
+    if(pw>=3) rect(x0+pw-1,top,1,by-top,'#4a1a10'); });
+  // beam
+  rect(left-2,top-1,right-left+4,3,'#6b2a1a'); rect(left-2,top-1,right-left+4,1,'#a8472a');
+  for(let x=left-1;x<=right+1;x+=4) set(x,top+1,'#e0a84a');
+  // roof
+  const ry0=top-rh; let lastHw=0;
+  for(let r=0;r<rh;r++){
+    const f=r/Math.max(1,rh-1), hw=Math.round(lerp(rw*.07,rw*.46,Math.pow(f,1.6))), y=ry0+r; lastHw=hw;
+    for(let x=-hw;x<=hw;x++){
+      let c=(r%3===0)?'#2a3a5c':'#18233b';
+      if(x<=-hw+1) c='#4d6a9a'; else if(x>=hw-1) c='#0f1626';
+      set(cx+x,y,c);
+    }
+  }
+  rect(cx-Math.round(rw*.08),ry0-1,Math.round(rw*.16),2,'#3a4f78');
+  set(cx,ry0-2,'#c9a24a'); set(cx,ry0-3,'#e8c868');
+  const ty=ry0+rh-1;
+  for(let i=1;i<=4;i++){ const dy=-Math.floor(i*.8);
+    set(cx-lastHw-i,ty+dy,'#2a3a5c'); set(cx-lastHw-i,ty+dy+1,'#18233b');
+    set(cx+lastHw+i,ty+dy,'#2a3a5c'); set(cx+lastHw+i,ty+dy+1,'#18233b'); }
+  rect(cx-lastHw,ry0+rh,lastHw*2+1,2,'#5a2418');
+  for(let x=cx-lastHw+1;x<=cx+lastHw;x+=3) set(x,ry0+rh,'#d9a54a');
+  lights.push({x:cx,y:by-pil*.4,rx:Wc*.32,ry:Wc*.22,c:'#ffb050',k:.8});
+}
+function bamboo(R){
+  const yb=Math.round(.58*H);
+  const defs=[[.015,.12,3],[.065,.1,3],[.115,.13,2],[-.03,.07,2]];
+  if(ox>10) defs.push([-.15,.18,3],[-.3,.14,2],[-.45,.2,3]);
+  defs.forEach((d,si)=>{
+    const x0=X(d[0]), lean=d[1], w=d[2];
+    for(let y=0;y<yb;y++){
+      const xs=Math.round(x0+lean*(yb-y));
+      if(((y+si*4)%11)===0){ rect(xs-1,y,w+1,1,'#1a2410'); continue; }
+      set(xs-1,y,'#a3a548'); set(xs,y,'#6a7a32'); if(w>=3) set(xs+1,y,'#36461f');
+    }
+    for(let yl=Math.round(.04*H); yl<.28*H; yl+=Math.round(.055*H)){
+      const xs=Math.round(x0+lean*(yb-yl));
+      [-125,-95,-65,70,100,130,160,-160].forEach(a=>{ if(R()>.5) petal(xs,yl,a,Wc*(.035+R()*.035),1,'#3d6b2b','#7ea044'); });
+    }
+    for(let k=0;k<5;k++){ const gx=Math.round(x0+lean*(yb-yb))+k*2-4; set(gx,yb,'#1d4a2a'); set(gx,yb-1,'#2a6a3c'); }
+  });
+}
+function lighting(){
+  lights.forEach(L=>{
+    const x0=Math.max(0,Math.floor(L.x-L.rx)), x1=Math.min(W-1,Math.ceil(L.x+L.rx)), y0=Math.max(0,Math.floor(L.y-L.ry)), y1=Math.min(H-1,Math.ceil(L.y+L.ry));
+    for(let y=y0;y<=y1;y++) for(let x=x0;x<=x1;x++){
+      const dx=(x-L.x)/L.rx, dy=(y-L.y)/L.ry, d2=dx*dx+dy*dy; if(d2>=1) continue;
+      const a=Math.pow(1-Math.sqrt(d2),1.5)*L.k;
+      const lvl=cl(Math.floor(a*5+(BAYER[((y&3)<<2)|(x&3)]/16-.5)*1.1+.5),0,4);
+      if(lvl) mix(x,y,L.c,lvl*.15);
+    }
+  });
+}
+function vignette(){
+  for(let y=0;y<H;y++) for(let x=0;x<W;x++){
+    const d=Math.hypot((x/W-.5)*1.15,(y/H-.5)*.95), a=cl((d-.5)*.8,0,.35), l=Math.floor(a/.09+thr(x,y));
+    if(l>0) mix(x,y,'#02030a',l*.09);
+  }
+}
+
+/* ---------- build ---------- */
+function build(){
+  PX=Math.max(3,Math.round(window.innerHeight/190));
+  W=Math.ceil(window.innerWidth/PX); H=Math.ceil(window.innerHeight/PX);
+  Wc=Math.min(W,Math.round(H*.7)); ox=Math.round((W-Wc)/2); yh=Math.round(H*.46);
+  buf=new Uint8ClampedArray(W*H*4);
+  const R=rng(20261012);
+  A={twStars:[],ff:[],shim:[],lan:[],sp:[]}; lights=[];
+
+  sky(); moon(); canopy(); stars(R);
+  redTree(X(.57),.36*H,Wc*.07,R); redTree(X(.93),.1*H,Wc*.05,R);
+  distantLamps(R);
+  rows(); waterDetails(R); pads(R); rocks(); bank(); bushes(R); leaves(R);
+
+  const lots=lotusList(R);
+  lots.forEach(l=>lights.push({x:l.x,y:l.y-l.L*.2,rx:l.L*1.8,ry:l.L*.8,c:'#ff4668',k:.75}));
+  const lanSpecs=[{yf:.64,off:.08,h:.13},{yf:.53,off:.05,h:.075},{yf:.49,off:.025,h:.04},{yf:.472,off:.012,h:.026}]
+    .map(s=>{ const y=Math.round(s.yf*H), p=pathAt(y), h=Math.max(4,Math.round(s.h*Wc)); return {x:Math.round(p.cx+p.hw+s.off*Wc),y,h}; });
+  lanSpecs.forEach(o=>lights.push({x:o.x,y:o.y-o.h*.5,rx:Math.max(6,o.h*3.4),ry:Math.max(4,o.h*2.4),c:'#ffb050',k:.95}));
+  const pcx=Math.round(X(.745)), pby=Math.round(.465*H), ppil=Math.round(.19*Wc);
+  // (pavilion light is pushed inside pavilion(); push it here too so it is lit before sprites)
+  lights.push({x:pcx,y:pby-ppil*.4,rx:Wc*.32,ry:Wc*.22,c:'#ffb050',k:.8});
+  lighting();
+
+  lots.forEach(drawLotus);
+  lanSpecs.slice().sort((a,b)=>a.y-b.y).forEach(drawLantern);
+  pavilion(); bamboo(R); vignette();
+
+  for(let i=0;i<22;i++) A.ff.push({x:R()*W,y:yh+R()*(H-yh)*.9,ax:3+R()*6,ay:2+R()*4,sx:.3+R()*.5,sy:.3+R()*.5,bs:1+R()*2.5,ph:R()*6.28});
+  lots.slice(-6).forEach(l=>{ for(let k=0;k<2;k++) A.sp.push({x:Math.round(l.x+(R()-.5)*l.L*1.6),y:Math.round(l.y-l.L*(.3+R()*.8)),sp:.8+R()*1.5,ph:R()*6.28}); });
+}
+
+/* ---------- animation layer ---------- */
+function drawFx(){
+  fctx.clearRect(0,0,W,H);
+  const t=ft/8, rgba=(r,g,b,a)=>`rgba(${r},${g},${b},${a})`;
+  A.twStars.forEach(s=>{
+    const v=Math.sin(t*s.sp+s.ph), a=v>.6?1:v>.1?.55:v>-.3?.2:0; if(!a) return;
+    fctx.fillStyle=rgba(235,240,255,a); fctx.fillRect(s.x,s.y,1,1);
+    if(s.big&&a>.5){ fctx.fillStyle=rgba(180,195,255,a*.6); fctx.fillRect(s.x-1,s.y,3,1); fctx.fillRect(s.x,s.y-1,1,3); }
+  });
+  A.shim.forEach(s=>{
+    const v=Math.sin(t*s.sp+s.ph), a=v>.5?.7:v>0?.35:0; if(!a) return;
+    fctx.fillStyle=s.warm?rgba(255,170,70,a):rgba(225,232,255,a); fctx.fillRect(s.x,s.y,s.w,1);
+  });
+  A.lan.forEach(l=>{
+    const v=Math.sin(t*l.sp+l.ph)+Math.sin(t*l.sp*2.3), a=l.far?(v>0?.8:.2):(v>1?.5:v>0?.25:0); if(!a) return;
+    fctx.fillStyle=l.far?rgba(255,214,120,a):rgba(255,244,196,a); fctx.fillRect(l.x,l.y,l.w,l.h);
+  });
+  A.ff.forEach(f=>{
+    const x=Math.round(f.x+Math.sin(t*f.sx+f.ph)*f.ax), y=Math.round(f.y+Math.cos(t*f.sy+f.ph*1.7)*f.ay), b=Math.sin(t*f.bs+f.ph), a=b>.5?1:b>0?.5:0; if(!a) return;
+    fctx.fillStyle=rgba(210,255,140,a*.35); fctx.fillRect(x-1,y,3,1); fctx.fillRect(x,y-1,1,3);
+    fctx.fillStyle=rgba(240,255,170,a); fctx.fillRect(x,y,1,1);
+  });
+  A.sp.forEach(s=>{
+    const v=Math.sin(t*s.sp+s.ph); if(v<.8) return;
+    fctx.fillStyle=rgba(255,235,245,.9); fctx.fillRect(s.x,s.y,1,1);
+    fctx.fillStyle=rgba(255,200,230,.5); fctx.fillRect(s.x-1,s.y,3,1); fctx.fillRect(s.x,s.y-1,1,3);
+  });
+  const ss=(t%16)/1.4;
+  if(ss<1){
+    const sx=X(.14)+ss*Wc*.5, sy=.03*H+ss*H*.16;
+    for(let k=0;k<7;k++){ fctx.fillStyle=rgba(255,255,255,(1-k/7)*.9); fctx.fillRect(Math.round(sx-k*1.6),Math.round(sy-k*.6),1,1); }
+  }
+}
+
+function init(){
+  build();
+  sceneC.width=fxC.width=W; sceneC.height=fxC.height=H;
+  sceneC.style.width=fxC.style.width=(W*PX)+'px';
+  sceneC.style.height=fxC.style.height=(H*PX)+'px';
+  sctx.putImageData(new ImageData(buf,W,H),0,0);
+  drawFx();
+  const still=window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(!timer && !still) timer=setInterval(()=>{ if(document.hidden) return; ft++; drawFx(); },125);
+}
+let rt;
+window.addEventListener('resize',()=>{ clearTimeout(rt); rt=setTimeout(init,150); });
+init();
+})();
+</script>
 
 <script>
-/* Randomly twinkling pixel stars */
-const stars = document.getElementById("stars");
-
-for (let i = 0; i < 115; i++) {
-  const star = document.createElement("span");
-  star.className = Math.random() > .82 ? "star big" : "star";
-  star.style.left = Math.random() * 100 + "%";
-  star.style.top = Math.random() * 70 + "%";
-  star.style.setProperty("--duration", 1.5 + Math.random() * 5 + "s");
-  star.style.setProperty("--delay", -Math.random() * 6 + "s");
-  stars.appendChild(star);
-}
-
-/* A few shooting stars */
-for (let i = 0; i < 3; i++) {
-  const meteor = document.createElement("span");
-  meteor.className = "shooting-star";
-  meteor.style.top = (10 + Math.random() * 35) + "%";
-  meteor.style.setProperty("--delay", (-Math.random() * 12) + "s");
-  stars.appendChild(meteor);
-}
-
 /* Navigation */
 function showSection(id) {
   document.querySelectorAll("main section").forEach(section => {
