@@ -4,214 +4,248 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#eee4ff">
+<meta name="theme-color" content="#211333">
 <title>For My Bangaram 💜</title>
 
 <style>
-/* =========================
-   PURPLE PIXEL FANTASY THEME
-   ========================= */
 :root {
-    --bg: #f8f3ff;
-    --lavender: #e9dcff;
-    --purple: #9b75d6;
-    --dark: #49316f;
-    --white: #fff;
-    --pink: #ffdff0;
-    --border: #7653a6;
+    --bg: #211333;
+    --purple: #a984e8;
+    --light-purple: #d9c3ff;
+    --pink: #ffd8ed;
+    --white: #fff8ff;
+    --panel: rgba(255, 255, 255, 0.075);
+    --border: rgba(217, 195, 255, 0.3);
 }
 
 * {
     box-sizing: border-box;
 }
 
+html {
+    scroll-behavior: smooth;
+}
+
 body {
     margin: 0;
-    background: var(--bg);
-    color: var(--dark);
-    font-family: "Courier New", monospace;
+    min-height: 100vh;
+    color: var(--white);
+    background:
+        radial-gradient(ellipse at top, #493064 0%, transparent 58%),
+        radial-gradient(ellipse at bottom right, #39214f 0%, transparent 45%),
+        var(--bg);
+    font-family: Georgia, "Times New Roman", serif;
     text-align: center;
     overflow-x: hidden;
-    image-rendering: pixelated;
 }
 
 button {
     font: inherit;
     cursor: pointer;
-    touch-action: manipulation;
     -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
 }
 
 button:focus-visible {
-    outline: 3px solid #b46ce5;
+    outline: 3px solid var(--pink);
     outline-offset: 4px;
-}
-
-h1, h2, h3, p {
-    overflow-wrap: anywhere;
-}
-
-h1 {
-    font-size: clamp(1.8rem, 7vw, 3rem);
-    line-height: 1.3;
-}
-
-h2 {
-    font-size: clamp(1.5rem, 5vw, 2.2rem);
-    line-height: 1.4;
-}
-
-p {
-    line-height: 1.9;
-}
-
-.pixel-card {
-    background: var(--white);
-    border: 4px solid var(--border);
-    border-radius: 3px;
-    box-shadow: 6px 6px 0 #c9b3ed;
-    padding: 24px;
-    width: min(92%, 650px);
-    margin: 22px auto;
-}
-
-.pixel-button {
-    border: 3px solid var(--border);
-    border-radius: 3px;
-    background: var(--purple);
-    color: white;
-    padding: 15px 20px;
-    min-height: 52px;
-    font-weight: bold;
-    box-shadow: 4px 4px 0 #c9b3ed;
-    transition: transform 0.1s;
-}
-
-.pixel-button:active {
-    transform: translate(3px, 3px);
-    box-shadow: 1px 1px 0 #c9b3ed;
 }
 
 section {
     display: none;
-    padding: 35px 0 55px;
     min-height: 100vh;
+    padding: 48px 0 60px;
 }
 
 section.active {
     display: block;
 }
 
-.subtitle {
-    font-size: 1.05rem;
-    line-height: 1.8;
+h1 {
+    font-size: clamp(2.1rem, 7vw, 3.5rem);
+    line-height: 1.2;
+    color: var(--pink);
+    margin: 18px 0;
 }
 
-.pixel-decoration {
-    font-size: 2rem;
-    letter-spacing: 12px;
-    margin: 20px 0;
+h2 {
+    font-size: clamp(1.7rem, 5vw, 2.5rem);
+    color: var(--light-purple);
+    line-height: 1.35;
+}
+
+p {
+    line-height: 1.9;
+}
+
+.subtitle {
+    font-size: clamp(1.05rem, 3.5vw, 1.25rem);
+    line-height: 1.9;
 }
 
 .small-note {
-    font-size: 0.9rem;
+    color: #d7c6eb;
+    font-size: 0.95rem;
     line-height: 1.8;
-    color: #765b98;
 }
 
-/* =========================
-   MAZE GAME
-   ========================= */
+.panel {
+    width: min(90%, 680px);
+    margin: 24px auto;
+    padding: clamp(22px, 5vw, 42px);
+    background: var(--panel);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.15);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+}
+
+.eyebrow {
+    color: var(--light-purple);
+    letter-spacing: 3px;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+}
+
+.decoration {
+    font-size: 1.8rem;
+    letter-spacing: 12px;
+    color: var(--pink);
+    margin: 20px 0;
+}
+
+.main-button {
+    display: inline-block;
+    max-width: 100%;
+    margin: 12px 0;
+    padding: 15px 26px;
+    border: 1px solid #e2ceff;
+    border-radius: 40px;
+    background: linear-gradient(135deg, #b696ed, #8e68ca);
+    color: #251536;
+    font-size: 1rem;
+    font-weight: bold;
+    box-shadow: 0 5px 22px rgba(169, 132, 232, 0.25);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.main-button:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 26px rgba(169, 132, 232, 0.4);
+}
+
+.main-button:active {
+    transform: scale(0.97);
+}
+
+/* Floating decorations */
+.floating {
+    position: fixed;
+    bottom: -40px;
+    pointer-events: none;
+    z-index: 10;
+    animation: floatUp 5s ease-out forwards;
+}
+
+@keyframes floatUp {
+    0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+    }
+    15% {
+        opacity: 0.9;
+    }
+    100% {
+        transform: translateY(-110vh) rotate(35deg);
+        opacity: 0;
+    }
+}
+
+/* Maze */
 .maze-frame {
-    width: min(94vw, 430px);
-    margin: 25px auto;
+    width: min(88vw, 390px);
+    margin: 26px auto;
     padding: 8px;
-    background: #d8c4fa;
-    border: 4px solid var(--border);
-    box-shadow: 5px 5px 0 #bca0e7;
+    border-radius: 15px;
+    background: rgba(217, 195, 255, 0.12);
+    border: 1px solid var(--border);
+    box-shadow: 0 8px 35px rgba(0, 0, 0, 0.2);
 }
 
 #maze {
     display: grid;
     grid-template-columns: repeat(9, minmax(0, 1fr));
-    gap: 2px;
+    gap: 3px;
     width: 100%;
     aspect-ratio: 1;
-    background: #d9c6f8;
 }
 
 .cell {
     min-width: 0;
     min-height: 0;
     display: flex;
-    align-items: center;
     justify-content: center;
-    background: #fffaff;
-    font-size: clamp(13px, 4.1vw, 23px);
+    align-items: center;
+    border-radius: 4px;
+    background: #f7efff;
+    font-size: clamp(13px, 4.5vw, 23px);
     line-height: 1;
     overflow: hidden;
+    user-select: none;
 }
 
 .cell.wall {
-    background: #a98add;
-    border: 2px solid #8c6abb;
-    background-image:
-        linear-gradient(45deg, #b99be8 25%, transparent 25%),
-        linear-gradient(-45deg, #b99be8 25%, transparent 25%);
-    background-size: 8px 8px;
+    background: #8864b2;
+    border: 1px solid #b99be8;
 }
 
 .cell.start {
-    background: #eadfff;
+    background: #e7d6ff;
 }
 
 .cell.goal {
-    background: #ffe4f1;
-    animation: glow 1.4s ease-in-out infinite alternate;
+    background: #ffe0f0;
+    box-shadow: inset 0 0 10px #ef9bc9;
 }
 
 .cell.player {
-    background: #f4e8ff;
-}
-
-@keyframes glow {
-    from { background-color: #ffe4f1; }
-    to { background-color: #e7ceff; }
+    background: #d7b9ff;
+    box-shadow: inset 0 0 0 2px #fff;
 }
 
 .maze-status {
-    min-height: 50px;
-    font-size: 1rem;
-    font-weight: bold;
-    line-height: 1.7;
-    margin: 15px auto;
+    min-height: 52px;
+    margin: 14px auto;
+    color: var(--pink);
+    font-size: 1.05rem;
+    line-height: 1.8;
 }
 
+/* Large mobile arrow controls */
 .controls {
     display: grid;
-    grid-template-columns: repeat(3, 76px);
-    grid-template-rows: repeat(2, 68px);
-    justify-content: center;
+    grid-template-columns: repeat(3, 72px);
+    grid-template-rows: repeat(2, 62px);
     gap: 9px;
+    justify-content: center;
     margin: 22px auto;
 }
 
 .arrow {
-    border: 3px solid var(--border);
-    background: #fff;
-    color: var(--dark);
-    border-radius: 5px;
-    font-size: 1.8rem;
-    font-weight: bold;
-    box-shadow: 3px 3px 0 #c9b3ed;
-    touch-action: manipulation;
+    border: 1px solid #d9c3ff;
+    border-radius: 15px;
+    background: rgba(217, 195, 255, 0.17);
+    color: white;
+    font-size: 1.6rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
     user-select: none;
-    -webkit-user-select: none;
 }
 
 .arrow:active {
-    background: var(--lavender);
-    transform: translate(2px, 2px);
+    background: #a984e8;
+    color: #211333;
+    transform: scale(0.96);
 }
 
 .arrow.up {
@@ -234,52 +268,69 @@ section.active {
     grid-row: 2;
 }
 
-/* =========================
-   PHOTO GALLERY
-   ========================= */
+/* Photo gallery */
 .gallery {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 18px;
-    width: min(94%, 760px);
-    margin: 28px auto;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 22px;
+    width: min(92%, 850px);
+    margin: 32px auto;
+    align-items: stretch;
 }
 
 .photo-card {
-    background: white;
-    border: 3px solid var(--border);
-    padding: 10px;
-    box-shadow: 4px 4px 0 #c9b3ed;
     min-width: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 12px;
+    border: 1px solid var(--border);
+    border-radius: 18px;
+    background: rgba(255, 255, 255, 0.075);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.photo-card img {
+/*
+  IMPORTANT PHOTO FIX:
+  Each photo has the same frame size.
+  "contain" shows the complete image without cropping.
+*/
+.photo-frame {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    border-radius: 11px;
+    background: rgba(15, 8, 28, 0.35);
+}
+
+.photo-frame img {
     display: block;
     width: 100%;
-    height: 230px;
-    object-fit: cover;
-    border: 2px solid #e4d5fa;
-    background: var(--lavender);
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
 }
 
 .caption {
-    font-size: clamp(1rem, 3.4vw, 1.2rem);
-    line-height: 1.6;
-    font-weight: bold;
-    margin: 14px 2px 8px;
+    margin: 16px 4px 7px;
+    font-size: clamp(1.05rem, 3vw, 1.3rem);
+    line-height: 1.65;
+    color: var(--pink);
+    overflow-wrap: anywhere;
 }
 
-/* =========================
-   LOVE LETTER
-   ========================= */
+/* Love letter */
 .letter {
-    width: min(92%, 700px);
-    margin: 28px auto;
-    padding: clamp(22px, 5vw, 42px);
-    background: #fff;
-    border: 4px solid var(--border);
-    box-shadow: 7px 7px 0 #c9b3ed;
+    width: min(92%, 740px);
+    margin: 30px auto;
+    padding: clamp(24px, 6vw, 52px);
     text-align: left;
+    background: rgba(255, 255, 255, 0.07);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    box-shadow: 0 12px 45px rgba(0, 0, 0, 0.16);
 }
 
 .letter h2,
@@ -288,62 +339,61 @@ section.active {
 }
 
 .letter h3 {
-    font-size: clamp(1.4rem, 4.5vw, 1.9rem);
+    font-size: clamp(1.5rem, 4.5vw, 2rem);
+    color: var(--pink);
 }
 
 .letter p {
-    font-size: clamp(1.12rem, 3.6vw, 1.3rem);
+    font-size: clamp(1.08rem, 3.4vw, 1.3rem);
     line-height: 2;
     margin: 24px 0;
 }
 
 .signature {
     text-align: center;
+    color: var(--pink);
     font-weight: bold;
-    color: #8055b6;
 }
 
 #final-message {
-    font-size: 1.3rem;
-    font-weight: bold;
+    font-size: clamp(1.15rem, 4vw, 1.4rem);
+    color: var(--pink);
     line-height: 1.9;
-    margin-top: 22px;
+    margin-top: 20px;
 }
 
 footer {
-    padding: 20px;
-    font-size: 0.85rem;
-    color: #8067a0;
+    padding: 25px 12px;
+    color: #c9b7e0;
+    font-size: 0.9rem;
 }
 
-@media (max-width: 520px) {
-    .pixel-card {
-        padding: 19px 14px;
+@media (max-width: 540px) {
+    section {
+        padding-top: 28px;
     }
 
     .gallery {
-        grid-template-columns: 1fr;
-        max-width: 400px;
-        gap: 22px;
+        grid-template-columns: minmax(0, 1fr);
+        width: min(88%, 400px);
+        gap: 20px;
     }
 
-    .photo-card img {
-        height: auto;
-        max-height: 390px;
+    .photo-frame {
         aspect-ratio: 4 / 3;
     }
 
-    .maze-frame {
-        padding: 5px;
+    .controls {
+        grid-template-columns: repeat(3, 76px);
+        grid-template-rows: repeat(2, 66px);
     }
 
-    .controls {
-        grid-template-columns: repeat(3, 78px);
-        grid-template-rows: repeat(2, 70px);
+    .panel {
+        padding: 24px 18px;
     }
 
     .letter {
-        padding: 22px 18px;
+        padding: 24px 20px;
     }
 }
 
@@ -360,128 +410,138 @@ footer {
 
 <!-- INTRO -->
 <section id="intro" class="active">
-    <div class="pixel-decoration">✦ ♡ ✧</div>
+    <div class="decoration">✦ ♡ ✧</div>
 
-    <div class="pixel-card">
-        <p>✧ A LITTLE ADVENTURE FOR ✧</p>
-        <h1>Happy Birthday,<br>Tanishka! 💜</h1>
+    <div class="panel">
+        <p class="eyebrow">A little universe made for you</p>
+
+        <h1>Happy Birthday,<br>Tanishka 💜</h1>
+
         <p class="subtitle">
             To my Bangaram, my Kanmani...<br>
-            I've made a little magical world just for you.
+            I've made a little something just for you.
         </p>
 
-        <div class="pixel-decoration">☾ ✦ ♡</div>
+        <div class="decoration">☾ ✧ ♡</div>
 
         <p class="subtitle">
-            Your adventure awaits.<br>
-            Find the magical heart to unlock your surprise.
+            A tiny adventure, a few memories,<br>
+            and something from my heart.
         </p>
 
-        <button class="pixel-button" onclick="startGame()">
-            START ADVENTURE ✨
+        <button class="main-button" onclick="startGame()">
+            Begin your little adventure ✨
         </button>
     </div>
 
     <footer>Made with all my love ♡</footer>
 </section>
 
-<!-- MAZE GAME -->
+<!-- GAME -->
 <section id="game">
-    <div class="pixel-card">
-        <p>✦ YOUR LITTLE QUEST ✦</p>
-        <h2>Find the Magic Heart ♡</h2>
+    <div class="panel">
+        <p class="eyebrow">Your little adventure</p>
+        <h2>Find the magic heart ♡</h2>
 
         <p class="subtitle">
-            Find your way through the lavender maze.<br>
-            Your surprise is waiting at the end!
+            Find your way through the little maze<br>
+            and discover what's waiting for you.
         </p>
 
         <div class="maze-frame">
-            <div id="maze" role="img"
-                 aria-label="A small purple pixel maze. Use the arrow buttons to reach the heart.">
-            </div>
+            <div id="maze" aria-label="A small maze. Reach the pink heart."></div>
         </div>
 
-        <div class="maze-status" id="maze-status" aria-live="polite">
-            Use the arrows to find the heart! 💜
+        <div id="maze-status" class="maze-status" aria-live="polite">
+            Follow the paths to find your heart. 💜
         </div>
 
-        <!-- Large buttons designed for touchscreens -->
         <div class="controls" aria-label="Maze movement controls">
             <button class="arrow up" onclick="movePlayer(0,-1)"
-                    aria-label="Move up">▲</button>
+                    aria-label="Move up">↑</button>
             <button class="arrow left" onclick="movePlayer(-1,0)"
-                    aria-label="Move left">◀</button>
+                    aria-label="Move left">←</button>
             <button class="arrow down" onclick="movePlayer(0,1)"
-                    aria-label="Move down">▼</button>
+                    aria-label="Move down">↓</button>
             <button class="arrow right" onclick="movePlayer(1,0)"
-                    aria-label="Move right">▶</button>
+                    aria-label="Move right">→</button>
         </div>
 
         <p class="small-note">
-            No monsters. No timer. Take your time, cutie. ♡
+            No rush, no monsters. Just a little walk to your surprise. ♡
         </p>
 
-        <button class="pixel-button" onclick="resetMaze()">
-            RESTART MAZE ↻
+        <button class="main-button" onclick="resetMaze()">
+            Start again ↻
         </button>
     </div>
 </section>
 
-<!-- PHOTOS -->
+<!-- PHOTO GALLERY -->
 <section id="gallery">
-    <div class="pixel-decoration">✦ ♡ ✧</div>
+    <div class="decoration">✦ ♡ ✧</div>
 
-    <div class="pixel-card">
-        <p>✧ QUEST COMPLETE ✧</p>
-        <h1>You found the magic! 💜</h1>
+    <div class="panel">
+        <p class="eyebrow">You found it!</p>
+        <h1>My favourite person 💜</h1>
+
         <p class="subtitle">
-            Every adventure is better with you in my world.
-            Here's a little collection of moments I love.
+            Some little moments with my favourite girl.
+            If I could keep any memories close forever,
+            these would be some of them.
         </p>
     </div>
 
     <div class="gallery">
         <div class="photo-card">
-            <img src="photo1.jpg" alt="Tanishka's favourite smile"
-                 loading="lazy">
+            <div class="photo-frame">
+                <img src="photo1.jpg" alt="A favourite photo of Tanishka">
+            </div>
             <p class="caption">My favourite smile ♡</p>
         </div>
 
         <div class="photo-card">
-            <img src="photo2.jpg" alt="My favourite person"
-                 loading="lazy">
+            <div class="photo-frame">
+                <img src="photo2.jpg" alt="A special memory together">
+            </div>
             <p class="caption">My favourite person ♡</p>
         </div>
 
         <div class="photo-card">
-            <img src="photo3.jpg" alt="Tanishka looking cute"
-                 loading="lazy">
-            <p class="caption">Shes such a cutie here ♡</p>
+            <div class="photo-frame">
+                <img src="photo3.jpg" alt="Another favourite memory">
+            </div>
+            <p class="caption">A moment to keep ♡</p>
         </div>
 
         <div class="photo-card">
-            <img src="photo4.jpg" alt="Tanishka's eyes"
-                 loading="lazy">
-            <p class="caption">My favourite eyes ♡</p>
+            <div class="photo-frame">
+                <img src="photo4.jpg" alt="A photo of my Bangaram">
+            </div>
+            <p class="caption">Just you being you ♡</p>
         </div>
     </div>
 
-    <div class="pixel-card">
+    <div class="panel">
         <p class="subtitle">
-            And now, there's one more thing I want you to read...
+            And now, one last little surprise...
         </p>
-        <button class="pixel-button" onclick="openLetter()">
-            OPEN YOUR LETTER 💌
+
+        <button class="main-button" onclick="openLetter()">
+            Open your letter 💌
         </button>
     </div>
 </section>
 
 <!-- LOVE LETTER -->
 <section id="love-letter">
-    <div class="pixel-decoration">♡ ✦ ♡</div>
+    <div class="decoration">♡ ✧ ♡</div>
 
     <div class="letter">
+        <p class="eyebrow" style="text-align:center">
+            A little piece of my heart
+        </p>
+
         <h2>To my Tanishka ♡</h2>
         <h3>Cutieeeeeeeee 💜</h3>
 
@@ -531,40 +591,40 @@ footer {
         </p>
     </div>
 
-    <div class="pixel-card">
+    <div class="panel">
         <h2>One last thing... ♡</h2>
+
         <p class="subtitle">
             If I could choose again, I'd still choose you.
         </p>
-        <button class="pixel-button" onclick="finalWish()">
-            ONE LAST SURPRISE ✨
+
+        <button class="main-button" onclick="finalWish()">
+            One last surprise ✨
         </button>
+
         <p id="final-message" aria-live="polite"></p>
     </div>
 </section>
 
-<footer>Crafted pixel by pixel, with love. 💜</footer>
+<footer>Made with love, just for you. 💜</footer>
 
 <script>
-/* =========================
-   SECTION NAVIGATION
-   ========================= */
-function showSection(sectionId) {
+/* Change between the website sections */
+function showSection(id) {
     document.querySelectorAll("section").forEach(section => {
         section.classList.remove("active");
     });
 
-    document.getElementById(sectionId).classList.add("active");
+    document.getElementById(id).classList.add("active");
     window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-/* =========================
-   MAZE LAYOUT
+/* Maze:
    # = wall
-   . = walkable path
-   S = starting point
-   G = magical goal
-   ========================= */
+   . = path
+   S = starting position
+   G = goal
+*/
 const mazeMap = [
     "#########",
     "#S#.....#",
@@ -590,12 +650,12 @@ function resetMaze() {
     mazeWon = false;
 
     document.getElementById("maze-status").textContent =
-        "Use the arrows to find the heart! 💜";
+        "Follow the paths to find your heart. 💜";
 
     drawMaze();
 }
 
-/* Draw the walls, paths, player and goal */
+/* Draw the maze and the player's current position */
 function drawMaze() {
     const maze = document.getElementById("maze");
     maze.innerHTML = "";
@@ -609,9 +669,6 @@ function drawMaze() {
 
             if (tile === "#") {
                 cell.classList.add("wall");
-                cell.setAttribute("aria-label", "Wall");
-            } else {
-                cell.setAttribute("aria-label", "Path");
             }
 
             if (tile === "S") {
@@ -621,13 +678,11 @@ function drawMaze() {
             if (tile === "G") {
                 cell.classList.add("goal");
                 cell.textContent = "💖";
-                cell.setAttribute("aria-label", "Magic heart");
             }
 
             if (player.x === x && player.y === y) {
                 cell.classList.add("player");
                 cell.textContent = "🧙🏻";
-                cell.setAttribute("aria-label", "Your character");
             }
 
             maze.appendChild(cell);
@@ -635,55 +690,46 @@ function drawMaze() {
     }
 }
 
-/* Move one tile at a time, never through walls */
+/* Move one square; walls cannot be crossed */
 function movePlayer(dx, dy) {
     if (mazeWon) return;
 
-    const newX = player.x + dx;
-    const newY = player.y + dy;
+    const x = player.x + dx;
+    const y = player.y + dy;
 
-    // Stay inside the maze.
     if (
-        newY < 0 ||
-        newY >= mazeMap.length ||
-        newX < 0 ||
-        newX >= mazeMap[newY].length
+        y < 0 ||
+        y >= mazeMap.length ||
+        x < 0 ||
+        x >= mazeMap[y].length ||
+        mazeMap[y][x] === "#"
     ) {
         return;
     }
 
-    // Walls block movement.
-    if (mazeMap[newY][newX] === "#") {
-        document.getElementById("maze-status").textContent =
-            "A little wall! Try another way. ♡";
-        return;
-    }
-
-    player.x = newX;
-    player.y = newY;
+    player.x = x;
+    player.y = y;
 
     drawMaze();
 
-    // Reaching the goal unlocks the gallery.
-    if (mazeMap[newY][newX] === "G") {
+    if (mazeMap[y][x] === "G") {
         mazeWon = true;
 
         document.getElementById("maze-status").textContent =
-            "YOU DID IT, BANGARAM! 💖";
+            "You found the magic heart, Bangaram! 💖";
 
-        setTimeout(showGallery, 900);
+        setTimeout(() => showSection("gallery"), 900);
     } else {
         document.getElementById("maze-status").textContent =
-            "You're doing great, cutie! ✨";
+            "You're doing great, cutie. ✨";
     }
 }
 
-/* Optional keyboard support for laptop visitors */
+/* Keyboard controls for laptop visitors */
 document.addEventListener("keydown", event => {
-    const gameIsOpen =
-        document.getElementById("game").classList.contains("active");
-
-    if (!gameIsOpen) return;
+    if (!document.getElementById("game").classList.contains("active")) {
+        return;
+    }
 
     const moves = {
         ArrowUp: [0, -1],
@@ -698,56 +744,40 @@ document.addEventListener("keydown", event => {
     }
 });
 
-/* =========================
-   GALLERY AND LETTER
-   ========================= */
-function showGallery() {
-    showSection("gallery");
-}
-
+/* Open the love letter */
 function openLetter() {
     showSection("love-letter");
 }
 
-function finalWish() {
-    const message = document.getElementById("final-message");
-
-    message.innerHTML =
-        "Happy birthday, my Bangaram! 💜<br>" +
-        "You will always have a special place in my heart. ♡";
-
-    // Small floating-heart celebration.
-    for (let i = 0; i < 18; i++) {
-        createHeart();
-    }
-}
-
+/* Floating hearts for the final surprise */
 function createHeart() {
     const heart = document.createElement("div");
-    heart.textContent = ["💜", "♡", "✨", "💗"][
-        Math.floor(Math.random() * 4)
+    heart.className = "floating";
+
+    const symbols = ["💜", "♡", "✨", "💗"];
+    heart.textContent = symbols[
+        Math.floor(Math.random() * symbols.length)
     ];
 
-    heart.style.position = "fixed";
-    heart.style.left = Math.random() * 100 + "vw";
-    heart.style.bottom = "-35px";
-    heart.style.fontSize = (18 + Math.random() * 18) + "px";
-    heart.style.pointerEvents = "none";
-    heart.style.zIndex = "1000";
-    heart.style.transition = "transform 3s linear, opacity 3s linear";
+    heart.style.left = Math.random() * 95 + "vw";
+    heart.style.fontSize = (18 + Math.random() * 20) + "px";
 
     document.body.appendChild(heart);
 
-    requestAnimationFrame(() => {
-        heart.style.transform =
-            "translateY(-105vh) rotate(25deg)";
-        heart.style.opacity = "0";
-    });
-
-    setTimeout(() => heart.remove(), 3100);
+    setTimeout(() => heart.remove(), 5100);
 }
 
-/* Show the initial maze when the page loads. */
+function finalWish() {
+    document.getElementById("final-message").innerHTML =
+        "Happy birthday, my Bangaram! 💜<br>" +
+        "I'd choose you, every single time. ♡";
+
+    for (let i = 0; i < 22; i++) {
+        setTimeout(createHeart, i * 100);
+    }
+}
+
+/* Build the maze when the page loads */
 drawMaze();
 </script>
 
