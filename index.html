@@ -3,727 +3,753 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="theme-color" content="#17112f">
-<title>For Tanishka 💜</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#eee4ff">
+<title>For My Bangaram 💜</title>
 
 <style>
+/* =========================
+   PURPLE PIXEL FANTASY THEME
+   ========================= */
 :root {
-  --night: #17112f;
-  --night2: #241840;
-  --lavender: #c9a7ff;
-  --lilac: #ead8ff;
-  --pink: #ffb8df;
-  --cream: #fff5ff;
-  --ink: #39234e;
-  --pixel: "Courier New", monospace;
+    --bg: #f8f3ff;
+    --lavender: #e9dcff;
+    --purple: #9b75d6;
+    --dark: #49316f;
+    --white: #fff;
+    --pink: #ffdff0;
+    --border: #7653a6;
 }
 
-* { box-sizing: border-box; }
-
-html { scroll-behavior: smooth; }
+* {
+    box-sizing: border-box;
+}
 
 body {
-  margin: 0;
-  min-height: 100vh;
-  color: var(--cream);
-  background:
-    linear-gradient(180deg, #100c24 0%, #211437 62%, #39234f 100%);
-  font-family: var(--pixel);
-  text-align: center;
-  overflow-x: hidden;
-  -webkit-tap-highlight-color: transparent;
+    margin: 0;
+    background: var(--bg);
+    color: var(--dark);
+    font-family: "Courier New", monospace;
+    text-align: center;
+    overflow-x: hidden;
+    image-rendering: pixelated;
 }
 
 button {
-  font: inherit;
-  cursor: pointer;
-  touch-action: manipulation;
-  -webkit-tap-highlight-color: transparent;
+    font: inherit;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
 }
 
 button:focus-visible {
-  outline: 3px dashed white;
-  outline-offset: 4px;
+    outline: 3px solid #b46ce5;
+    outline-offset: 4px;
 }
 
-#sky, #hearts {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  overflow: hidden;
-}
-
-#sky { z-index: 0; }
-#hearts { z-index: 3; }
-
-main {
-  position: relative;
-  z-index: 1;
-  width: min(720px, 100%);
-  min-height: 100vh;
-  margin: auto;
-  padding: 32px 20px 38px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-}
-
-section {
-  width: 100%;
-  animation: appear .35s steps(5, end);
-}
-
-.hidden { display: none !important; }
-
-@keyframes appear {
-  from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-
-/* Pixel-art night sky */
-.pixel-star {
-  position: absolute;
-  color: #fff0ff;
-  text-shadow: 0 0 7px #d9b8ff;
-  animation: twinkle 1.7s steps(2, end) infinite alternate;
-}
-
-@keyframes twinkle {
-  from { opacity: .3; }
-  to { opacity: 1; }
-}
-
-.moon {
-  position: fixed;
-  top: 7%;
-  right: 8%;
-  z-index: 0;
-  font-size: clamp(42px, 8vw, 70px);
-  color: #e6d2ff;
-  text-shadow: 4px 4px 0 #896ab4, 0 0 24px #d5b5ff60;
-  pointer-events: none;
-}
-
-.pixel-cloud {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 22px;
-  z-index: 0;
-  opacity: .55;
-  background:
-    linear-gradient(90deg, #76519d 0 32px, transparent 32px 48px) 0 0 / 80px 12px repeat-x,
-    linear-gradient(90deg, #493364 0 48px, transparent 48px 64px) 16px 12px / 96px 12px repeat-x;
-  image-rendering: pixelated;
-}
-
-.float-heart {
-  position: absolute;
-  bottom: -35px;
-  color: var(--pink);
-  font-size: 19px;
-  text-shadow: 2px 2px #9b5fbc;
-  animation: rise 6s linear forwards;
-}
-
-@keyframes rise {
-  to { transform: translateY(-110vh); opacity: 0; }
-}
-
-.eyebrow {
-  color: var(--pink);
-  font-size: 11px;
-  letter-spacing: 2px;
-  line-height: 1.8;
-  margin-bottom: 20px;
-  text-transform: uppercase;
-}
-
-h1, h2, h3 {
-  font-family: var(--pixel);
-  font-weight: bold;
-  line-height: 1.5;
-  overflow-wrap: anywhere;
+h1, h2, h3, p {
+    overflow-wrap: anywhere;
 }
 
 h1 {
-  font-size: clamp(25px, 6vw, 43px);
-  color: var(--cream);
-  text-shadow: 3px 3px 0 #8559b3;
-  margin: 0 0 18px;
+    font-size: clamp(1.8rem, 7vw, 3rem);
+    line-height: 1.3;
 }
 
 h2 {
-  font-size: clamp(18px, 4.5vw, 28px);
-  color: var(--lilac);
+    font-size: clamp(1.5rem, 5vw, 2.2rem);
+    line-height: 1.4;
 }
 
 p {
-  font-size: 14px;
-  line-height: 1.9;
-  color: #e9ddff;
+    line-height: 1.9;
 }
 
-.pink { color: var(--pink); }
-.lilac { color: var(--lavender); }
-
-/* Pixel panels */
-.panel {
-  width: 100%;
-  padding: 22px;
-  margin-top: 22px;
-  background: #211638ed;
-  border: 3px solid var(--lavender);
-  outline: 3px solid #684a91;
-  box-shadow: 7px 7px 0 #0c091c;
+.pixel-card {
+    background: var(--white);
+    border: 4px solid var(--border);
+    border-radius: 3px;
+    box-shadow: 6px 6px 0 #c9b3ed;
+    padding: 24px;
+    width: min(92%, 650px);
+    margin: 22px auto;
 }
 
-.pixel-frame {
-  border: 3px solid #e7cfff;
-  box-shadow:
-    4px 4px 0 #875caf,
-    8px 8px 0 #0e0a20;
+.pixel-button {
+    border: 3px solid var(--border);
+    border-radius: 3px;
+    background: var(--purple);
+    color: white;
+    padding: 15px 20px;
+    min-height: 52px;
+    font-weight: bold;
+    box-shadow: 4px 4px 0 #c9b3ed;
+    transition: transform 0.1s;
 }
 
-.primary, .secondary {
-  display: inline-block;
-  max-width: 100%;
-  min-height: 48px;
-  padding: 14px 18px;
-  margin: 12px 4px 4px;
-  border: 3px solid #fff0ff;
-  border-radius: 0;
-  font-family: var(--pixel);
-  font-size: 12px;
-  font-weight: bold;
-  line-height: 1.7;
-  box-shadow: 4px 4px 0 #0d091a;
-  overflow-wrap: anywhere;
+.pixel-button:active {
+    transform: translate(3px, 3px);
+    box-shadow: 1px 1px 0 #c9b3ed;
 }
 
-.primary {
-  color: #39234e;
-  background: var(--pink);
+section {
+    display: none;
+    padding: 35px 0 55px;
+    min-height: 100vh;
 }
 
-.secondary {
-  color: var(--cream);
-  background: #65438c;
+section.active {
+    display: block;
 }
 
-.primary:hover, .secondary:hover {
-  filter: brightness(1.12);
-  transform: translate(-1px, -1px);
-  box-shadow: 5px 5px 0 #0d091a;
+.subtitle {
+    font-size: 1.05rem;
+    line-height: 1.8;
 }
 
-.primary:active, .secondary:active {
-  transform: translate(3px, 3px);
-  box-shadow: 1px 1px 0 #0d091a;
+.pixel-decoration {
+    font-size: 2rem;
+    letter-spacing: 12px;
+    margin: 20px 0;
 }
 
-#gameBoard {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 12px;
-  margin: 24px 0;
+.small-note {
+    font-size: 0.9rem;
+    line-height: 1.8;
+    color: #765b98;
 }
 
-.star-card {
-  min-width: 0;
-  aspect-ratio: 1;
-  display: grid;
-  place-items: center;
-  border: 3px solid #a88acb;
-  border-radius: 0;
-  background: #38254f;
-  color: #fff0ff;
-  font-size: clamp(25px, 6vw, 38px);
-  box-shadow: 4px 4px 0 #0d091a;
-  padding: 0;
-  user-select: none;
+/* =========================
+   MAZE GAME
+   ========================= */
+.maze-frame {
+    width: min(94vw, 430px);
+    margin: 25px auto;
+    padding: 8px;
+    background: #d8c4fa;
+    border: 4px solid var(--border);
+    box-shadow: 5px 5px 0 #bca0e7;
 }
 
-.star-card:hover:not(:disabled) {
-  background: #56366f;
+#maze {
+    display: grid;
+    grid-template-columns: repeat(9, minmax(0, 1fr));
+    gap: 2px;
+    width: 100%;
+    aspect-ratio: 1;
+    background: #d9c6f8;
 }
 
-.star-card.collected {
-  background: #784b92;
-  border-color: var(--pink);
-  animation: collect .2s steps(3, end);
+.cell {
+    min-width: 0;
+    min-height: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fffaff;
+    font-size: clamp(13px, 4.1vw, 23px);
+    line-height: 1;
+    overflow: hidden;
 }
 
-@keyframes collect {
-  50% { transform: scale(1.12); }
+.cell.wall {
+    background: #a98add;
+    border: 2px solid #8c6abb;
+    background-image:
+        linear-gradient(45deg, #b99be8 25%, transparent 25%),
+        linear-gradient(-45deg, #b99be8 25%, transparent 25%);
+    background-size: 8px 8px;
 }
 
-.progress {
-  height: 13px;
-  margin-top: 15px;
-  border: 2px solid #e6d2ff;
-  background: #110d22;
-  padding: 2px;
+.cell.start {
+    background: #eadfff;
 }
 
-#bar {
-  width: 0%;
-  height: 100%;
-  background: repeating-linear-gradient(
-    90deg, #ffb8df 0 10px, #e99dce 10px 12px
-  );
-  transition: width .25s steps(5, end);
+.cell.goal {
+    background: #ffe4f1;
+    animation: glow 1.4s ease-in-out infinite alternate;
 }
 
-.message {
-  min-height: 48px;
-  margin-top: 16px;
-  color: var(--pink);
-  font-size: 12px;
-  line-height: 1.9;
+.cell.player {
+    background: #f4e8ff;
 }
 
+@keyframes glow {
+    from { background-color: #ffe4f1; }
+    to { background-color: #e7ceff; }
+}
+
+.maze-status {
+    min-height: 50px;
+    font-size: 1rem;
+    font-weight: bold;
+    line-height: 1.7;
+    margin: 15px auto;
+}
+
+.controls {
+    display: grid;
+    grid-template-columns: repeat(3, 76px);
+    grid-template-rows: repeat(2, 68px);
+    justify-content: center;
+    gap: 9px;
+    margin: 22px auto;
+}
+
+.arrow {
+    border: 3px solid var(--border);
+    background: #fff;
+    color: var(--dark);
+    border-radius: 5px;
+    font-size: 1.8rem;
+    font-weight: bold;
+    box-shadow: 3px 3px 0 #c9b3ed;
+    touch-action: manipulation;
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.arrow:active {
+    background: var(--lavender);
+    transform: translate(2px, 2px);
+}
+
+.arrow.up {
+    grid-column: 2;
+    grid-row: 1;
+}
+
+.arrow.left {
+    grid-column: 1;
+    grid-row: 2;
+}
+
+.arrow.down {
+    grid-column: 2;
+    grid-row: 2;
+}
+
+.arrow.right {
+    grid-column: 3;
+    grid-row: 2;
+}
+
+/* =========================
+   PHOTO GALLERY
+   ========================= */
 .gallery {
-  display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 15px;
-  margin: 25px 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    width: min(94%, 760px);
+    margin: 28px auto;
 }
 
-.photo {
-  min-width: 0;
-  background: #f9eaff;
-  color: var(--ink);
-  padding: 8px;
-  border: 3px solid #d5b4f4;
-  box-shadow: 5px 5px 0 #0d091a;
+.photo-card {
+    background: white;
+    border: 3px solid var(--border);
+    padding: 10px;
+    box-shadow: 4px 4px 0 #c9b3ed;
+    min-width: 0;
 }
 
-.photo:nth-child(even) { transform: translateY(7px); }
-
-.photo img {
-  display: block;
-  width: 100%;
-  aspect-ratio: 4 / 5;
-  object-fit: cover;
-  background: #d9c0ef;
-  image-rendering: auto;
+.photo-card img {
+    display: block;
+    width: 100%;
+    height: 230px;
+    object-fit: cover;
+    border: 2px solid #e4d5fa;
+    background: var(--lavender);
 }
 
-.photo span {
-  display: block;
-  padding: 10px 2px 5px;
-  font-size: 11px;
-  line-height: 1.7;
-  overflow-wrap: anywhere;
+.caption {
+    font-size: clamp(1rem, 3.4vw, 1.2rem);
+    line-height: 1.6;
+    font-weight: bold;
+    margin: 14px 2px 8px;
 }
 
-.photo-placeholder {
-  aspect-ratio: 4 / 5;
-  place-items: center;
-  background: #d9c0ef;
-  font-size: 34px;
-}
-
-/* The secret letter becomes a magical retro message window */
+/* =========================
+   LOVE LETTER
+   ========================= */
 .letter {
-  margin-top: 25px;
-  padding: clamp(16px, 5vw, 30px);
-  text-align: left;
-  background: #fff1fb;
-  color: #513565;
-  border: 4px solid #d8b3ff;
-  outline: 3px solid #8155a8;
-  box-shadow: 7px 7px 0 #0c091c;
-  overflow-wrap: break-word;
+    width: min(92%, 700px);
+    margin: 28px auto;
+    padding: clamp(22px, 5vw, 42px);
+    background: #fff;
+    border: 4px solid var(--border);
+    box-shadow: 7px 7px 0 #c9b3ed;
+    text-align: left;
 }
 
-.letter h2 {
-  color: #8555a4;
-  text-align: center;
-  font-size: clamp(16px, 4vw, 22px);
+.letter h2,
+.letter h3 {
+    text-align: center;
+}
+
+.letter h3 {
+    font-size: clamp(1.4rem, 4.5vw, 1.9rem);
 }
 
 .letter p {
-  color: #594467;
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 16px;
-  line-height: 1.9;
+    font-size: clamp(1.12rem, 3.6vw, 1.3rem);
+    line-height: 2;
+    margin: 24px 0;
 }
 
 .signature {
-  color: #8555a4 !important;
-  text-align: right;
-  font-style: italic;
+    text-align: center;
+    font-weight: bold;
+    color: #8055b6;
+}
+
+#final-message {
+    font-size: 1.3rem;
+    font-weight: bold;
+    line-height: 1.9;
+    margin-top: 22px;
 }
 
 footer {
-  margin-top: 35px;
-  color: #b9a6d0;
-  font-size: 10px;
-  line-height: 1.8;
+    padding: 20px;
+    font-size: 0.85rem;
+    color: #8067a0;
 }
 
-@media (max-width: 600px) {
-  main {
-    justify-content: flex-start;
-    padding: 35px 13px 35px;
-  }
+@media (max-width: 520px) {
+    .pixel-card {
+        padding: 19px 14px;
+    }
 
-  #intro { margin: auto 0; }
+    .gallery {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        gap: 22px;
+    }
 
-  .moon {
-    top: 12px;
-    right: 12px;
-    font-size: 35px;
-    opacity: .8;
-  }
+    .photo-card img {
+        height: auto;
+        max-height: 390px;
+        aspect-ratio: 4 / 3;
+    }
 
-  .eyebrow {
-    font-size: 9px;
-    letter-spacing: 1.5px;
-    margin-bottom: 14px;
-  }
+    .maze-frame {
+        padding: 5px;
+    }
 
-  .panel {
-    padding: 17px 12px;
-    margin-top: 18px;
-  }
+    .controls {
+        grid-template-columns: repeat(3, 78px);
+        grid-template-rows: repeat(2, 70px);
+    }
 
-  #gameBoard { gap: 9px; }
-
-  .star-card {
-    box-shadow: 3px 3px 0 #0d091a;
-  }
-
-  .primary, .secondary {
-    min-height: 50px;
-    padding: 12px 13px;
-    font-size: 11px;
-  }
-
-  .gallery { gap: 10px; }
-
-  .photo { padding: 6px; }
-
-  .photo span { font-size: 10px; }
-
-  .letter { padding: 17px 14px; }
-
-  .letter p {
-    font-size: 15px;
-    line-height: 1.85;
-  }
-}
-
-@media (max-width: 350px) {
-  main { padding-left: 9px; padding-right: 9px; }
-  .panel { padding: 13px 9px; }
-  #gameBoard { gap: 6px; }
-  .gallery { gap: 8px; }
-  .photo { padding: 4px; }
+    .letter {
+        padding: 22px 18px;
+    }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: .01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: .01ms !important;
-    scroll-behavior: auto !important;
-  }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        transition-duration: 0.01ms !important;
+    }
 }
 </style>
 </head>
 
 <body>
-<div id="sky" aria-hidden="true"></div>
-<div id="hearts" aria-hidden="true"></div>
-<div class="moon" aria-hidden="true">☾</div>
-<div class="pixel-cloud" aria-hidden="true"></div>
 
-<main>
-  <section id="intro">
-    <div class="eyebrow">★ PLAYER 1: TANISHKA ★</div>
-    <div style="font-size:30px;margin-bottom:15px">♡ ✦ ♡ ✦ ♡</div>
+<!-- INTRO -->
+<section id="intro" class="active">
+    <div class="pixel-decoration">✦ ♡ ✧</div>
 
-    <h1>HAPPY BIRTHDAY,<br><span class="lilac">TANISHKA</span></h1>
+    <div class="pixel-card">
+        <p>✧ A LITTLE ADVENTURE FOR ✧</p>
+        <h1>Happy Birthday,<br>Tanishka! 💜</h1>
+        <p class="subtitle">
+            To my Bangaram, my Kanmani...<br>
+            I've made a little magical world just for you.
+        </p>
 
-    <p>
-      To my Bangaram,<br>
-      I've hidden a little something for you<br>
-      among the stars tonight.
-    </p>
+        <div class="pixel-decoration">☾ ✦ ♡</div>
 
-    <p class="pink">♡ YOUR SPECIAL QUEST AWAITS ♡</p>
+        <p class="subtitle">
+            Your adventure awaits.<br>
+            Find the magical heart to unlock your surprise.
+        </p>
 
-    <button class="primary" onclick="startGame()">
-      ▶ START YOUR ADVENTURE
-    </button>
-  </section>
-
-  <section id="game" class="hidden">
-    <div class="eyebrow">★ LEVEL 01 — THE STAR GARDEN ★</div>
-
-    <h2>COLLECT THE STARS ✦</h2>
-
-    <p>
-      Five magical stars are hidden here.<br>
-      Find them all to unlock your surprise, cutie!
-    </p>
-
-    <div class="panel pixel-frame">
-      <div><span id="count">0</span> / 5 STARS &nbsp; ♡</div>
-
-      <div class="progress" id="progress" role="progressbar"
-           aria-label="Stars collected" aria-valuemin="0"
-           aria-valuemax="5" aria-valuenow="0">
-        <div id="bar"></div>
-      </div>
-
-      <div id="gameBoard" aria-label="Find five magical stars"></div>
-
-      <div id="gameMessage" class="message" aria-live="polite">
-        Psst... the stars are waiting!!!
-      </div>
+        <button class="pixel-button" onclick="startGame()">
+            START ADVENTURE ✨
+        </button>
     </div>
 
-    <button id="continue" class="primary hidden" onclick="showGallery()">
-      UNLOCK YOUR SURPRISE 💌
-    </button>
-  </section>
+    <footer>Made with all my love ♡</footer>
+</section>
 
-  <section id="gallery" class="hidden">
-    <div class="eyebrow">★ LEVEL 02 — MEMORY LANE ★</div>
+<!-- MAZE GAME -->
+<section id="game">
+    <div class="pixel-card">
+        <p>✦ YOUR LITTLE QUEST ✦</p>
+        <h2>Find the Magic Heart ♡</h2>
 
-    <h2>MY FAVOURITE <span class="pink">KANMANI</span> ♡</h2>
+        <p class="subtitle">
+            Find your way through the lavender maze.<br>
+            Your surprise is waiting at the end!
+        </p>
 
-    <p>
-      The stars were pretty, but honestly?<br>
-      Nothing shines quite like you do hehe.
-    </p>
+        <div class="maze-frame">
+            <div id="maze" role="img"
+                 aria-label="A small purple pixel maze. Use the arrow buttons to reach the heart.">
+            </div>
+        </div>
+
+        <div class="maze-status" id="maze-status" aria-live="polite">
+            Use the arrows to find the heart! 💜
+        </div>
+
+        <!-- Large buttons designed for touchscreens -->
+        <div class="controls" aria-label="Maze movement controls">
+            <button class="arrow up" onclick="movePlayer(0,-1)"
+                    aria-label="Move up">▲</button>
+            <button class="arrow left" onclick="movePlayer(-1,0)"
+                    aria-label="Move left">◀</button>
+            <button class="arrow down" onclick="movePlayer(0,1)"
+                    aria-label="Move down">▼</button>
+            <button class="arrow right" onclick="movePlayer(1,0)"
+                    aria-label="Move right">▶</button>
+        </div>
+
+        <p class="small-note">
+            No monsters. No timer. Take your time, cutie. ♡
+        </p>
+
+        <button class="pixel-button" onclick="resetMaze()">
+            RESTART MAZE ↻
+        </button>
+    </div>
+</section>
+
+<!-- PHOTOS -->
+<section id="gallery">
+    <div class="pixel-decoration">✦ ♡ ✧</div>
+
+    <div class="pixel-card">
+        <p>✧ QUEST COMPLETE ✧</p>
+        <h1>You found the magic! 💜</h1>
+        <p class="subtitle">
+            Every adventure is better with you in my world.
+            Here's a little collection of moments I love.
+        </p>
+    </div>
 
     <div class="gallery">
-      <div class="photo">
-        <img src="photo1.jpg" alt="A favourite picture of Tanishka"
-             loading="lazy"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-        <div class="photo-placeholder" style="display:none" aria-hidden="true">🌷</div>
-        <span>MY FAVOURITE SMILE ♡</span>
-      </div>
+        <div class="photo-card">
+            <img src="photo1.jpg" alt="Tanishka's favourite smile"
+                 loading="lazy">
+            <p class="caption">My favourite smile ♡</p>
+        </div>
 
-      <div class="photo">
-        <img src="photo2.jpg" alt="A special memory" loading="lazy"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-        <div class="photo-placeholder" style="display:none" aria-hidden="true">🌙</div>
-        <span>MY FAVOURITE PERSON ♡</span>
-      </div>
+        <div class="photo-card">
+            <img src="photo2.jpg" alt="My favourite person"
+                 loading="lazy">
+            <p class="caption">My favourite person ♡</p>
+        </div>
 
-      <div class="photo">
-        <img src="photo3.jpg" alt="A happy memory together" loading="lazy"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-        <div class="photo-placeholder" style="display:none" aria-hidden="true">🧸</div>
-        <span>SHE'S SUCH A CUTIE HERE ♡</span>
-      </div>
+        <div class="photo-card">
+            <img src="photo3.jpg" alt="Tanishka looking cute"
+                 loading="lazy">
+            <p class="caption">Shes such a cutie here ♡</p>
+        </div>
 
-      <div class="photo">
-        <img src="photo4.jpg" alt="Another favourite memory" loading="lazy"
-             onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-        <div class="photo-placeholder" style="display:none" aria-hidden="true">💗</div>
-        <span>MY FAVOURITE EYES ♡</span>
-      </div>
+        <div class="photo-card">
+            <img src="photo4.jpg" alt="Tanishka's eyes"
+                 loading="lazy">
+            <p class="caption">My favourite eyes ♡</p>
+        </div>
     </div>
 
-    <p class="pink">♡ ONE LAST LITTLE TREASURE... ♡</p>
+    <div class="pixel-card">
+        <p class="subtitle">
+            And now, there's one more thing I want you to read...
+        </p>
+        <button class="pixel-button" onclick="openLetter()">
+            OPEN YOUR LETTER 💌
+        </button>
+    </div>
+</section>
 
-    <button class="primary" onclick="openLetter()">
-      OPEN YOUR LETTER 💌
-    </button>
-  </section>
-
-  <section id="finale" class="hidden">
-    <div class="eyebrow">★ SECRET UNLOCKED ★</div>
-    <div style="font-size:40px">💌</div>
-
-    <h1>FOR MY <span class="pink">CUTIEEEEEEEEEE</span></h1>
+<!-- LOVE LETTER -->
+<section id="love-letter">
+    <div class="pixel-decoration">♡ ✦ ♡</div>
 
     <div class="letter">
-      <h2>To my Tanishka ♡</h2>
+        <h2>To my Tanishka ♡</h2>
+        <h3>Cutieeeeeeeee 💜</h3>
 
-      <p>Happy birthday, my Bangaram. 💜</p>
+        <p>Happy birthday, my Bangaram. 💜</p>
 
-      <p>
-        If I could give you one thing in this world, it would be the ability
-        to see yourself through my eyes. Maybe then you'd understand just
-        how much I love you and how special &amp; beautiful you are to me.
-      </p>
+        <p>
+            Happy birthday to my Kanmani. I hope today reminds you of just
+            how special you are and how much you mean to me. You deserve
+            so much happiness, so much love, and all the beautiful things
+            this world has to offer.
+        </p>
 
-      <p>
-        You deserve all the happiness, all the success this world has to offer,
-        all the little things that make you smile, and all the love your heart can
-        possibly hold. I love you for the way you are cutie, I wouldn't change a
-        thing about you darlings.
-      </p>
+        <p>
+            I wish I could put into words just how much I love you.
+            Sometimes I don't think words are enough to explain everything
+            I feel for you, but I hope you always feel it in the little
+            things I do and in the way I care about you.
+        </p>
 
-      <p>
-        I hope our new chapter in your life brings you beautiful memories,
-        dreams that come true, and a million reasons to smile. And I hope
-        I get to be beside you, admiring you through as many of those memories
-        as possible, until my last breath.
-      </p>
+        <p>
+            You're my oxygen, my soul mate, my dream, my heartbeat,
+            my best friend, my partner, my everything.
+        </p>
 
-      <p>
-        Out of all the stars in this vast universe, I'm so glad that
-        somehow, in this lifetime, I got you. If I could choose all over
-        again, I'd still choose you, Tanishka. You're my oxygen, my soul mate,
-        my dream, my heartbeat, my best friend, my partner, my everything.
-      </p>
+        <p>
+            You make ordinary moments feel special just by being you.
+            Your smile, your eyes, your little ways of being yourself —
+            there's so much about you that I adore. I'm so grateful that
+            I get to know you, love you, and make memories with you.
+        </p>
 
-      <p>
-        Thank you for being you. Never forget how loved, precious, and
-        wonderful you are. Today is your day, but every day feels
-        a little more special because you're in my life.
-      </p>
+        <p>
+            I hope this new year of your life brings you countless reasons
+            to smile. No matter what comes your way, I hope you remember
+            how loved you are and that I'll always be cheering for you.
+        </p>
 
-      <p>Happy birthday, my hottie. I love you. ♡</p>
+        <p>
+            Happy birthday once again, my Bangaram. I love you more than
+            this little website could ever show. Here's to you, to us,
+            and to all the memories we still have to make. ♡
+        </p>
 
-      <p class="signature">
-        Forever cheering for you,<br>
-        Your favourite person, Karan 💜
-      </p>
+        <p class="signature">
+            Forever cheering for you,<br>
+            Your favourite person, Karan 💜
+        </p>
     </div>
 
-    <p class="pink">♡ ONE LAST WISH, JUST FOR YOU ♡</p>
-
-    <button class="primary" onclick="finalWish()">
-      MAKE A BIRTHDAY WISH 🌙
-    </button>
-
-    <div id="wish" class="hidden">
-      <h2 class="pink">♡ WISH GRANTED ♡</h2>
-      <p>
-        May all your wishes find their way to you. And may you always
-        remember that someone out here is wishing for your happiness hehe.
-      </p>
-      <div style="font-size:30px">☾ 💜 ✨ ♡ ✨ 💜 ☽</div>
+    <div class="pixel-card">
+        <h2>One last thing... ♡</h2>
+        <p class="subtitle">
+            If I could choose again, I'd still choose you.
+        </p>
+        <button class="pixel-button" onclick="finalWish()">
+            ONE LAST SURPRISE ✨
+        </button>
+        <p id="final-message" aria-live="polite"></p>
     </div>
-  </section>
+</section>
 
-  <footer>♡ MADE WITH LOVE, JUST FOR TANISHKA ♡</footer>
-</main>
+<footer>Crafted pixel by pixel, with love. 💜</footer>
 
 <script>
-const $ = id => document.getElementById(id);
+/* =========================
+   SECTION NAVIGATION
+   ========================= */
+function showSection(sectionId) {
+    document.querySelectorAll("section").forEach(section => {
+        section.classList.remove("active");
+    });
 
-function show(id) {
-  ["intro", "game", "gallery", "finale"].forEach(section => {
-    $(section).classList.toggle("hidden", section !== id);
-  });
-
-  window.scrollTo({ top: 0, behavior: "smooth" });
+    document.getElementById(sectionId).classList.add("active");
+    window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Pixel-style stars scattered across the night sky.
-for (let i = 0; i < 85; i++) {
-  const star = document.createElement("span");
-  star.className = "pixel-star";
-  star.textContent = Math.random() > .7 ? "✦" : "·";
-  star.style.left = Math.random() * 100 + "%";
-  star.style.top = Math.random() * 100 + "%";
-  star.style.fontSize = (8 + Math.random() * 12) + "px";
-  star.style.animationDelay = Math.random() * 2 + "s";
-  $("sky").appendChild(star);
-}
-
-// Floating pixel-style symbols.
-function createHeart() {
-  const heart = document.createElement("span");
-  heart.className = "float-heart";
-  heart.textContent = ["♡", "♥", "✦", "💜"][
-    Math.floor(Math.random() * 4)
-  ];
-  heart.style.left = Math.random() * 100 + "%";
-  heart.style.animationDuration = (5 + Math.random() * 4) + "s";
-  $("hearts").appendChild(heart);
-  setTimeout(() => heart.remove(), 9500);
-}
-
-setInterval(createHeart, 1000);
-
-const sweetMessages = [
-  "A little star for the girl who lights up my world. 💜",
-  "If I could, I'd bottle up every one of your smiles. ♡",
-  "The universe did something right when it brought you into my life.",
-  "You deserve every beautiful thing this world has to offer. ✨",
-  "Five stars, one cutie, and a whole lot of love. 💌"
+/* =========================
+   MAZE LAYOUT
+   # = wall
+   . = walkable path
+   S = starting point
+   G = magical goal
+   ========================= */
+const mazeMap = [
+    "#########",
+    "#S#.....#",
+    "#.#.###.#",
+    "#...#...#",
+    "###.#...#",
+    "#...#...#",
+    "#.###.#.#",
+    "#.....#G#",
+    "#########"
 ];
 
-let collected = 0;
+let player = { x: 1, y: 1 };
+let mazeWon = false;
 
 function startGame() {
-  show("game");
-
-  if ($("gameBoard").children.length) return;
-
-  for (let i = 0; i < 9; i++) {
-    const btn = document.createElement("button");
-    btn.className = "star-card";
-    btn.textContent = ["✧", "☆", "⋆", "✦", "·"][i % 5];
-    btn.type = "button";
-    btn.setAttribute("aria-label", "Find a magical star");
-
-    btn.onclick = () => {
-      if (btn.disabled || collected >= 5) return;
-
-      btn.classList.add("collected");
-      btn.textContent = "💜";
-      btn.disabled = true;
-      btn.setAttribute("aria-label", "Star collected");
-
-      $("gameMessage").textContent = sweetMessages[collected];
-
-      collected++;
-      $("count").textContent = collected;
-      $("bar").style.width = (collected * 20) + "%";
-      $("progress").setAttribute("aria-valuenow", collected);
-
-      if (collected === 5) {
-        $("gameMessage").textContent =
-          "You found all five stars! But the most precious thing in this universe is still you, Bangaram. ♡";
-
-        $("continue").classList.remove("hidden");
-        celebrate();
-      }
-    };
-
-    $("gameBoard").appendChild(btn);
-  }
+    resetMaze();
+    showSection("game");
 }
 
+function resetMaze() {
+    player = { x: 1, y: 1 };
+    mazeWon = false;
+
+    document.getElementById("maze-status").textContent =
+        "Use the arrows to find the heart! 💜";
+
+    drawMaze();
+}
+
+/* Draw the walls, paths, player and goal */
+function drawMaze() {
+    const maze = document.getElementById("maze");
+    maze.innerHTML = "";
+
+    for (let y = 0; y < mazeMap.length; y++) {
+        for (let x = 0; x < mazeMap[y].length; x++) {
+            const cell = document.createElement("div");
+            const tile = mazeMap[y][x];
+
+            cell.className = "cell";
+
+            if (tile === "#") {
+                cell.classList.add("wall");
+                cell.setAttribute("aria-label", "Wall");
+            } else {
+                cell.setAttribute("aria-label", "Path");
+            }
+
+            if (tile === "S") {
+                cell.classList.add("start");
+            }
+
+            if (tile === "G") {
+                cell.classList.add("goal");
+                cell.textContent = "💖";
+                cell.setAttribute("aria-label", "Magic heart");
+            }
+
+            if (player.x === x && player.y === y) {
+                cell.classList.add("player");
+                cell.textContent = "🧙🏻";
+                cell.setAttribute("aria-label", "Your character");
+            }
+
+            maze.appendChild(cell);
+        }
+    }
+}
+
+/* Move one tile at a time, never through walls */
+function movePlayer(dx, dy) {
+    if (mazeWon) return;
+
+    const newX = player.x + dx;
+    const newY = player.y + dy;
+
+    // Stay inside the maze.
+    if (
+        newY < 0 ||
+        newY >= mazeMap.length ||
+        newX < 0 ||
+        newX >= mazeMap[newY].length
+    ) {
+        return;
+    }
+
+    // Walls block movement.
+    if (mazeMap[newY][newX] === "#") {
+        document.getElementById("maze-status").textContent =
+            "A little wall! Try another way. ♡";
+        return;
+    }
+
+    player.x = newX;
+    player.y = newY;
+
+    drawMaze();
+
+    // Reaching the goal unlocks the gallery.
+    if (mazeMap[newY][newX] === "G") {
+        mazeWon = true;
+
+        document.getElementById("maze-status").textContent =
+            "YOU DID IT, BANGARAM! 💖";
+
+        setTimeout(showGallery, 900);
+    } else {
+        document.getElementById("maze-status").textContent =
+            "You're doing great, cutie! ✨";
+    }
+}
+
+/* Optional keyboard support for laptop visitors */
+document.addEventListener("keydown", event => {
+    const gameIsOpen =
+        document.getElementById("game").classList.contains("active");
+
+    if (!gameIsOpen) return;
+
+    const moves = {
+        ArrowUp: [0, -1],
+        ArrowDown: [0, 1],
+        ArrowLeft: [-1, 0],
+        ArrowRight: [1, 0]
+    };
+
+    if (moves[event.key]) {
+        event.preventDefault();
+        movePlayer(...moves[event.key]);
+    }
+});
+
+/* =========================
+   GALLERY AND LETTER
+   ========================= */
 function showGallery() {
-  if (collected < 5) return;
-  show("gallery");
-  celebrate();
+    showSection("gallery");
 }
 
 function openLetter() {
-  if (collected < 5) return;
-  show("finale");
-  celebrate();
+    showSection("love-letter");
 }
 
 function finalWish() {
-  $("wish").classList.remove("hidden");
-  celebrate();
+    const message = document.getElementById("final-message");
+
+    message.innerHTML =
+        "Happy birthday, my Bangaram! 💜<br>" +
+        "You will always have a special place in my heart. ♡";
+
+    // Small floating-heart celebration.
+    for (let i = 0; i < 18; i++) {
+        createHeart();
+    }
 }
 
-function celebrate() {
-  for (let i = 0; i < 18; i++) {
-    setTimeout(createHeart, i * 100);
-  }
+function createHeart() {
+    const heart = document.createElement("div");
+    heart.textContent = ["💜", "♡", "✨", "💗"][
+        Math.floor(Math.random() * 4)
+    ];
+
+    heart.style.position = "fixed";
+    heart.style.left = Math.random() * 100 + "vw";
+    heart.style.bottom = "-35px";
+    heart.style.fontSize = (18 + Math.random() * 18) + "px";
+    heart.style.pointerEvents = "none";
+    heart.style.zIndex = "1000";
+    heart.style.transition = "transform 3s linear, opacity 3s linear";
+
+    document.body.appendChild(heart);
+
+    requestAnimationFrame(() => {
+        heart.style.transform =
+            "translateY(-105vh) rotate(25deg)";
+        heart.style.opacity = "0";
+    });
+
+    setTimeout(() => heart.remove(), 3100);
 }
+
+/* Show the initial maze when the page loads. */
+drawMaze();
 </script>
+
 </body>
 </html>
