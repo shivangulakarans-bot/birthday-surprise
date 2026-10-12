@@ -3,339 +3,551 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#17112f">
 <title>For Tanishka 💜</title>
 
 <style>
 :root {
+  --night: #17112f;
+  --night2: #241840;
   --lavender: #c9a7ff;
-  --purple: #8055bd;
-  --deep: #17112f;
+  --lilac: #ead8ff;
   --pink: #ffb8df;
-  --cream: #fff7ff;
+  --cream: #fff5ff;
+  --ink: #39234e;
+  --pixel: "Courier New", monospace;
 }
 
 * { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
 
 body {
   margin: 0;
   min-height: 100vh;
   color: var(--cream);
-  font-family: Georgia, "Times New Roman", serif;
   background:
-    radial-gradient(ellipse at 20% 15%, #48346e 0%, transparent 45%),
-    radial-gradient(ellipse at 85% 80%, #452754 0%, transparent 45%),
-    linear-gradient(150deg, #100d24, #211438 55%, #151026);
+    linear-gradient(180deg, #100c24 0%, #211437 62%, #39234f 100%);
+  font-family: var(--pixel);
+  text-align: center;
   overflow-x: hidden;
+  -webkit-tap-highlight-color: transparent;
 }
 
 button {
   font: inherit;
   cursor: pointer;
-  border: 0;
-  transition: transform .2s, filter .2s;
+  touch-action: manipulation;
+  -webkit-tap-highlight-color: transparent;
 }
 
-button:hover { transform: translateY(-2px); filter: brightness(1.08); }
-button:focus-visible { outline: 2px solid white; outline-offset: 4px; }
+button:focus-visible {
+  outline: 3px dashed white;
+  outline-offset: 4px;
+}
 
 #sky, #hearts {
   position: fixed;
   inset: 0;
-  overflow: hidden;
   pointer-events: none;
+  overflow: hidden;
 }
 
-.star {
-  position: absolute;
-  color: white;
-  opacity: .75;
-  animation: twinkle 2s infinite alternate;
-}
-
-@keyframes twinkle {
-  from { opacity: .2; transform: scale(.8); }
-  to { opacity: 1; transform: scale(1.2); }
-}
-
-.float-heart {
-  position: absolute;
-  bottom: -40px;
-  color: var(--pink);
-  animation: rise 7s linear forwards;
-}
-
-@keyframes rise {
-  to { transform: translateY(-110vh) rotate(30deg); opacity: 0; }
-}
+#sky { z-index: 0; }
+#hearts { z-index: 3; }
 
 main {
   position: relative;
   z-index: 1;
-  width: min(680px, 100%);
+  width: min(720px, 100%);
   min-height: 100vh;
   margin: auto;
-  padding: 26px 20px 45px;
+  padding: 32px 20px 38px;
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  text-align: center;
+  align-items: center;
 }
 
-.eyebrow {
-  text-transform: uppercase;
-  letter-spacing: 4px;
-  color: #e3cbff;
-  font: 11px Arial, sans-serif;
-  margin-bottom: 18px;
-}
-
-h1 {
-  font-size: clamp(40px, 9vw, 68px);
-  font-weight: normal;
-  line-height: 1.08;
-  margin: 0 0 18px;
-}
-
-h2 { font-size: clamp(27px, 6vw, 39px); font-weight: normal; }
-
-p {
-  font-size: 17px;
-  line-height: 1.8;
-  color: #eee3ff;
-}
-
-.lilac { color: #e0c5ff; }
-.pink { color: #ffc5e8; }
-
-.panel {
+section {
   width: 100%;
-  padding: 28px 23px;
-  margin-top: 22px;
-  background: #ffffff0c;
-  border: 1px solid #e2c9ff35;
-  border-radius: 25px;
-  box-shadow: 0 15px 60px #08051935;
-  backdrop-filter: blur(9px);
-}
-
-.primary {
-  background: linear-gradient(120deg, #e0c3ff, #ffcee9);
-  color: #37214e;
-  padding: 15px 25px;
-  border-radius: 40px;
-  font-weight: bold;
-  box-shadow: 0 6px 25px #c99cff30;
-  margin-top: 14px;
-}
-
-.secondary {
-  color: #f4e9ff;
-  background: #ffffff12;
-  border: 1px solid #e4caff50;
-  padding: 12px 19px;
-  border-radius: 30px;
-  margin: 6px;
+  animation: appear .35s steps(5, end);
 }
 
 .hidden { display: none !important; }
 
+@keyframes appear {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pixel-art night sky */
+.pixel-star {
+  position: absolute;
+  color: #fff0ff;
+  text-shadow: 0 0 7px #d9b8ff;
+  animation: twinkle 1.7s steps(2, end) infinite alternate;
+}
+
+@keyframes twinkle {
+  from { opacity: .3; }
+  to { opacity: 1; }
+}
+
+.moon {
+  position: fixed;
+  top: 7%;
+  right: 8%;
+  z-index: 0;
+  font-size: clamp(42px, 8vw, 70px);
+  color: #e6d2ff;
+  text-shadow: 4px 4px 0 #896ab4, 0 0 24px #d5b5ff60;
+  pointer-events: none;
+}
+
+.pixel-cloud {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 22px;
+  z-index: 0;
+  opacity: .55;
+  background:
+    linear-gradient(90deg, #76519d 0 32px, transparent 32px 48px) 0 0 / 80px 12px repeat-x,
+    linear-gradient(90deg, #493364 0 48px, transparent 48px 64px) 16px 12px / 96px 12px repeat-x;
+  image-rendering: pixelated;
+}
+
+.float-heart {
+  position: absolute;
+  bottom: -35px;
+  color: var(--pink);
+  font-size: 19px;
+  text-shadow: 2px 2px #9b5fbc;
+  animation: rise 6s linear forwards;
+}
+
+@keyframes rise {
+  to { transform: translateY(-110vh); opacity: 0; }
+}
+
+.eyebrow {
+  color: var(--pink);
+  font-size: 11px;
+  letter-spacing: 2px;
+  line-height: 1.8;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+}
+
+h1, h2, h3 {
+  font-family: var(--pixel);
+  font-weight: bold;
+  line-height: 1.5;
+  overflow-wrap: anywhere;
+}
+
+h1 {
+  font-size: clamp(25px, 6vw, 43px);
+  color: var(--cream);
+  text-shadow: 3px 3px 0 #8559b3;
+  margin: 0 0 18px;
+}
+
+h2 {
+  font-size: clamp(18px, 4.5vw, 28px);
+  color: var(--lilac);
+}
+
+p {
+  font-size: 14px;
+  line-height: 1.9;
+  color: #e9ddff;
+}
+
+.pink { color: var(--pink); }
+.lilac { color: var(--lavender); }
+
+/* Pixel panels */
+.panel {
+  width: 100%;
+  padding: 22px;
+  margin-top: 22px;
+  background: #211638ed;
+  border: 3px solid var(--lavender);
+  outline: 3px solid #684a91;
+  box-shadow: 7px 7px 0 #0c091c;
+}
+
+.pixel-frame {
+  border: 3px solid #e7cfff;
+  box-shadow:
+    4px 4px 0 #875caf,
+    8px 8px 0 #0e0a20;
+}
+
+.primary, .secondary {
+  display: inline-block;
+  max-width: 100%;
+  min-height: 48px;
+  padding: 14px 18px;
+  margin: 12px 4px 4px;
+  border: 3px solid #fff0ff;
+  border-radius: 0;
+  font-family: var(--pixel);
+  font-size: 12px;
+  font-weight: bold;
+  line-height: 1.7;
+  box-shadow: 4px 4px 0 #0d091a;
+  overflow-wrap: anywhere;
+}
+
+.primary {
+  color: #39234e;
+  background: var(--pink);
+}
+
+.secondary {
+  color: var(--cream);
+  background: #65438c;
+}
+
+.primary:hover, .secondary:hover {
+  filter: brightness(1.12);
+  transform: translate(-1px, -1px);
+  box-shadow: 5px 5px 0 #0d091a;
+}
+
+.primary:active, .secondary:active {
+  transform: translate(3px, 3px);
+  box-shadow: 1px 1px 0 #0d091a;
+}
+
 #gameBoard {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 12px;
   margin: 24px 0;
 }
 
 .star-card {
+  min-width: 0;
   aspect-ratio: 1;
-  border-radius: 19px;
-  background: #d9b8ff12;
-  border: 1px solid #dfc4ff35;
-  color: #f6dcff;
-  font-size: 35px;
   display: grid;
   place-items: center;
+  border: 3px solid #a88acb;
+  border-radius: 0;
+  background: #38254f;
+  color: #fff0ff;
+  font-size: clamp(25px, 6vw, 38px);
+  box-shadow: 4px 4px 0 #0d091a;
+  padding: 0;
+  user-select: none;
+}
+
+.star-card:hover:not(:disabled) {
+  background: #56366f;
 }
 
 .star-card.collected {
-  background: #e7caff25;
-  color: #ffcae9;
-  cursor: default;
-  animation: pop .3s ease;
+  background: #784b92;
+  border-color: var(--pink);
+  animation: collect .2s steps(3, end);
 }
 
-@keyframes pop {
-  50% { transform: scale(1.13); }
+@keyframes collect {
+  50% { transform: scale(1.12); }
 }
 
 .progress {
-  height: 7px;
-  background: #ffffff18;
-  border-radius: 20px;
-  overflow: hidden;
-  margin-top: 14px;
+  height: 13px;
+  margin-top: 15px;
+  border: 2px solid #e6d2ff;
+  background: #110d22;
+  padding: 2px;
 }
 
 #bar {
   width: 0%;
   height: 100%;
-  background: linear-gradient(90deg, #c9a7ff, #ffb8df);
-  transition: width .3s;
+  background: repeating-linear-gradient(
+    90deg, #ffb8df 0 10px, #e99dce 10px 12px
+  );
+  transition: width .25s steps(5, end);
 }
 
 .message {
-  color: #ffe0f1;
-  font-style: italic;
   min-height: 48px;
-  font-size: 16px;
+  margin-top: 16px;
+  color: var(--pink);
+  font-size: 12px;
+  line-height: 1.9;
 }
 
 .gallery {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 12px;
-  margin: 22px 0;
+  gap: 15px;
+  margin: 25px 0;
 }
 
 .photo {
   min-width: 0;
-  padding: 9px 9px 15px;
-  border-radius: 10px;
-  background: #fff6ff;
-  color: #5b3a72;
-  transform: rotate(-2deg);
+  background: #f9eaff;
+  color: var(--ink);
+  padding: 8px;
+  border: 3px solid #d5b4f4;
+  box-shadow: 5px 5px 0 #0d091a;
 }
 
-.photo:nth-child(even) { transform: rotate(2deg); }
+.photo:nth-child(even) { transform: translateY(7px); }
 
 .photo img {
+  display: block;
   width: 100%;
   aspect-ratio: 4 / 5;
-  display: block;
   object-fit: cover;
-  background: #e5d4f3;
-  border-radius: 5px;
+  background: #d9c0ef;
+  image-rendering: auto;
 }
 
 .photo span {
   display: block;
-  padding-top: 11px;
-  font-size: 14px;
+  padding: 10px 2px 5px;
+  font-size: 11px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
 }
 
+.photo-placeholder {
+  aspect-ratio: 4 / 5;
+  place-items: center;
+  background: #d9c0ef;
+  font-size: 34px;
+}
+
+/* The secret letter becomes a magical retro message window */
 .letter {
+  margin-top: 25px;
+  padding: clamp(16px, 5vw, 30px);
   text-align: left;
-  color: #4c355d;
-  background: #fff5fc;
-  border-radius: 7px;
-  padding: clamp(20px, 5vw, 34px);
-  margin-top: 22px;
-  box-shadow: 0 10px 35px #0002;
-  transform: rotate(-.5deg);
+  background: #fff1fb;
+  color: #513565;
+  border: 4px solid #d8b3ff;
+  outline: 3px solid #8155a8;
+  box-shadow: 7px 7px 0 #0c091c;
+  overflow-wrap: break-word;
 }
 
-.letter p { color: #594467; font-size: 16px; line-height: 1.9; }
-.letter h2 { color: #8555a4; text-align: center; }
-.signature { text-align: right; color: #8555a4; font-style: italic; }
+.letter h2 {
+  color: #8555a4;
+  text-align: center;
+  font-size: clamp(16px, 4vw, 22px);
+}
 
-footer { margin-top: 30px; color: #b9a6d0; font: 11px Arial, sans-serif; }
+.letter p {
+  color: #594467;
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 16px;
+  line-height: 1.9;
+}
 
-@media (max-width: 400px) {
-  main { padding-left: 14px; padding-right: 14px; }
-  .panel { padding: 22px 16px; }
-  #gameBoard { gap: 8px; }
-  .star-card { font-size: 29px; }
+.signature {
+  color: #8555a4 !important;
+  text-align: right;
+  font-style: italic;
+}
+
+footer {
+  margin-top: 35px;
+  color: #b9a6d0;
+  font-size: 10px;
+  line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  main {
+    justify-content: flex-start;
+    padding: 35px 13px 35px;
+  }
+
+  #intro { margin: auto 0; }
+
+  .moon {
+    top: 12px;
+    right: 12px;
+    font-size: 35px;
+    opacity: .8;
+  }
+
+  .eyebrow {
+    font-size: 9px;
+    letter-spacing: 1.5px;
+    margin-bottom: 14px;
+  }
+
+  .panel {
+    padding: 17px 12px;
+    margin-top: 18px;
+  }
+
+  #gameBoard { gap: 9px; }
+
+  .star-card {
+    box-shadow: 3px 3px 0 #0d091a;
+  }
+
+  .primary, .secondary {
+    min-height: 50px;
+    padding: 12px 13px;
+    font-size: 11px;
+  }
+
+  .gallery { gap: 10px; }
+
+  .photo { padding: 6px; }
+
+  .photo span { font-size: 10px; }
+
+  .letter { padding: 17px 14px; }
+
+  .letter p {
+    font-size: 15px;
+    line-height: 1.85;
+  }
+}
+
+@media (max-width: 350px) {
+  main { padding-left: 9px; padding-right: 9px; }
+  .panel { padding: 13px 9px; }
+  #gameBoard { gap: 6px; }
+  .gallery { gap: 8px; }
+  .photo { padding: 4px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 </style>
 </head>
 
 <body>
-<div id="sky"></div>
-<div id="hearts"></div>
+<div id="sky" aria-hidden="true"></div>
+<div id="hearts" aria-hidden="true"></div>
+<div class="moon" aria-hidden="true">☾</div>
+<div class="pixel-cloud" aria-hidden="true"></div>
 
 <main>
-  <!-- INTRO -->
   <section id="intro">
-    <div class="eyebrow">A little universe made for you</div>
-    <div style="font-size:48px;margin-bottom:16px">☾ ✧ ♡ ✧</div>
-    <h1>Happy Birthday,<br><span class="lilac">Tanishka</span></h1>
+    <div class="eyebrow">★ PLAYER 1: TANISHKA ★</div>
+    <div style="font-size:30px;margin-bottom:15px">♡ ✦ ♡ ✦ ♡</div>
+
+    <h1>HAPPY BIRTHDAY,<br><span class="lilac">TANISHKA</span></h1>
+
     <p>
       To my Bangaram,<br>
       I've hidden a little something for you<br>
       among the stars tonight.
     </p>
-    <p class="pink" style="font-size:15px">Ready to discover your surprise?</p>
-    <button class="primary" onclick="startGame()">Enter our little universe ✨</button>
-  </section>
 
-  <!-- GAME -->
-  <section id="game" class="hidden">
-    <div class="eyebrow">Your little birthday quest</div>
-    <h2>Catch the <span class="lilac">stars</span> ✨</h2>
-    <p>
-      I've hidden five magical stars for you.<br>
-      click on  them all to unlock your surprise, cutie.
-    </p>
+    <p class="pink">♡ YOUR SPECIAL QUEST AWAITS ♡</p>
 
-    <div class="panel">
-      <div><span id="count">0</span> / 5 stars collected 💜</div>
-      <div class="progress"><div id="bar"></div></div>
-      <div id="gameBoard"></div>
-      <div id="gameMessage" class="message">Psst... the stars are waiting!!!</div>
-    </div>
-    <button id="continue" class="primary hidden" onclick="showGallery()">
-      Your surprise awaits 💌
+    <button class="primary" onclick="startGame()">
+      ▶ START YOUR ADVENTURE
     </button>
   </section>
 
-  <!-- PHOTO GALLERY -->
+  <section id="game" class="hidden">
+    <div class="eyebrow">★ LEVEL 01 — THE STAR GARDEN ★</div>
+
+    <h2>COLLECT THE STARS ✦</h2>
+
+    <p>
+      Five magical stars are hidden here.<br>
+      Find them all to unlock your surprise, cutie!
+    </p>
+
+    <div class="panel pixel-frame">
+      <div><span id="count">0</span> / 5 STARS &nbsp; ♡</div>
+
+      <div class="progress" id="progress" role="progressbar"
+           aria-label="Stars collected" aria-valuemin="0"
+           aria-valuemax="5" aria-valuenow="0">
+        <div id="bar"></div>
+      </div>
+
+      <div id="gameBoard" aria-label="Find five magical stars"></div>
+
+      <div id="gameMessage" class="message" aria-live="polite">
+        Psst... the stars are waiting!!!
+      </div>
+    </div>
+
+    <button id="continue" class="primary hidden" onclick="showGallery()">
+      UNLOCK YOUR SURPRISE 💌
+    </button>
+  </section>
+
   <section id="gallery" class="hidden">
-    <div class="eyebrow">My favourite kind of magic</div>
-    <h2>That's my <span class="pink">Kanmani</span> ♡</h2>
+    <div class="eyebrow">★ LEVEL 02 — MEMORY LANE ★</div>
+
+    <h2>MY FAVOURITE <span class="pink">KANMANI</span> ♡</h2>
+
     <p>
       The stars were pretty, but honestly?<br>
       Nothing shines quite like you do hehe.
     </p>
 
     <div class="gallery">
-      <!-- Replace photo1.jpg etc. with your own uploaded photos -->
       <div class="photo">
         <img src="photo1.jpg" alt="A favourite picture of Tanishka"
+             loading="lazy"
              onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-        <div style="display:none;aspect-ratio:4/5;place-items:center;font-size:38px">🌷</div>
-        <span>My favourite smile ♡</span>
+        <div class="photo-placeholder" style="display:none" aria-hidden="true">🌷</div>
+        <span>MY FAVOURITE SMILE ♡</span>
       </div>
+
       <div class="photo">
-        <img src="photo2.jpg" alt="A special memory"
+        <img src="photo2.jpg" alt="A special memory" loading="lazy"
              onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-        <div style="display:none;aspect-ratio:4/5;place-items:center;font-size:38px">🌙</div>
-        <span>My favourite person ♡</span>
+        <div class="photo-placeholder" style="display:none" aria-hidden="true">🌙</div>
+        <span>MY FAVOURITE PERSON ♡</span>
       </div>
+
       <div class="photo">
-        <img src="photo3.jpg" alt="A happy memory together"
+        <img src="photo3.jpg" alt="A happy memory together" loading="lazy"
              onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-        <div style="display:none;aspect-ratio:4/5;place-items:center;font-size:38px">🧸</div>
-        <span>Shes such a cutie here ♡</span>
+        <div class="photo-placeholder" style="display:none" aria-hidden="true">🧸</div>
+        <span>SHE'S SUCH A CUTIE HERE ♡</span>
       </div>
+
       <div class="photo">
-        <img src="photo4.jpg" alt="Another favourite memory"
+        <img src="photo4.jpg" alt="Another favourite memory" loading="lazy"
              onerror="this.style.display='none';this.nextElementSibling.style.display='grid'">
-        <div style="display:none;aspect-ratio:4/5;place-items:center;font-size:38px">💗</div>
-        <span>My favourite eyes ♡</span>
+        <div class="photo-placeholder" style="display:none" aria-hidden="true">💗</div>
+        <span>MY FAVOURITE EYES ♡</span>
       </div>
     </div>
 
-    <p class="pink">And now... one last little thing.</p>
-    <button class="primary" onclick="openLetter()">Open your letter 💌</button>
+    <p class="pink">♡ ONE LAST LITTLE TREASURE... ♡</p>
+
+    <button class="primary" onclick="openLetter()">
+      OPEN YOUR LETTER 💌
+    </button>
   </section>
 
-  <!-- SECRET LETTER -->
   <section id="finale" class="hidden">
-    <div class="eyebrow">Just between you and me</div>
-    <div style="font-size:44px">💌</div>
-    <h1 style="font-size:clamp(34px,8vw,53px)">For my <span class="pink">Cutieeeeeeeee</span></h1>
+    <div class="eyebrow">★ SECRET UNLOCKED ★</div>
+    <div style="font-size:40px">💌</div>
+
+    <h1>FOR MY <span class="pink">CUTIEEEEEEEEEE</span></h1>
 
     <div class="letter">
       <h2>To my Tanishka ♡</h2>
@@ -345,27 +557,27 @@ footer { margin-top: 30px; color: #b9a6d0; font: 11px Arial, sans-serif; }
       <p>
         If I could give you one thing in this world, it would be the ability
         to see yourself through my eyes. Maybe then you'd understand just
-        how much I love you and how special & beautiful you are to me.
+        how much I love you and how special &amp; beautiful you are to me.
       </p>
 
       <p>
-        You deserve all the happiness, all the success this world has to offer, 
+        You deserve all the happiness, all the success this world has to offer,
         all the little things that make you smile, and all the love your heart can
-        possibly hold. I love you for the way you are cutie, I wouldn't change a 
+        possibly hold. I love you for the way you are cutie, I wouldn't change a
         thing about you darlings.
       </p>
 
       <p>
         I hope our new chapter in your life brings you beautiful memories,
         dreams that come true, and a million reasons to smile. And I hope
-        I get to be beside you, admiring youfor as many of those memories 
-        until my last breath.
+        I get to be beside you, admiring you through as many of those memories
+        as possible, until my last breath.
       </p>
 
       <p>
         Out of all the stars in this vast universe, I'm so glad that
         somehow, in this lifetime, I got you. If I could choose all over
-        again, I'd still choose you, Tanishka. You're my oxygen, my soul mate
+        again, I'd still choose you, Tanishka. You're my oxygen, my soul mate,
         my dream, my heartbeat, my best friend, my partner, my everything.
       </p>
 
@@ -383,16 +595,23 @@ footer { margin-top: 30px; color: #b9a6d0; font: 11px Arial, sans-serif; }
       </p>
     </div>
 
-    <p class="pink">One last wish, just for you... ✨</p>
-    <button class="primary" onclick="finalWish()">Make a birthday wish 🌙</button>
+    <p class="pink">♡ ONE LAST WISH, JUST FOR YOU ♡</p>
+
+    <button class="primary" onclick="finalWish()">
+      MAKE A BIRTHDAY WISH 🌙
+    </button>
+
     <div id="wish" class="hidden">
-      <h2 class="pink">May all your wishes find their way to you. ♡</h2>
-      <p>And may you always remember that someone out here is wishing for your happiness hehe.</p>
-      <div style="font-size:36px">☾ 💜 ✨ ♡ ✨ 💜 ☽</div>
+      <h2 class="pink">♡ WISH GRANTED ♡</h2>
+      <p>
+        May all your wishes find their way to you. And may you always
+        remember that someone out here is wishing for your happiness hehe.
+      </p>
+      <div style="font-size:30px">☾ 💜 ✨ ♡ ✨ 💜 ☽</div>
     </div>
   </section>
 
-  <footer>made with love, just for Tanishka ♡</footer>
+  <footer>♡ MADE WITH LOVE, JUST FOR TANISHKA ♡</footer>
 </main>
 
 <script>
@@ -402,33 +621,36 @@ function show(id) {
   ["intro", "game", "gallery", "finale"].forEach(section => {
     $(section).classList.toggle("hidden", section !== id);
   });
+
   window.scrollTo({ top: 0, behavior: "smooth" });
 }
 
-// Create the dreamy starry sky.
-for (let i = 0; i < 75; i++) {
+// Pixel-style stars scattered across the night sky.
+for (let i = 0; i < 85; i++) {
   const star = document.createElement("span");
-  star.className = "star";
-  star.textContent = Math.random() > .75 ? "✦" : "·";
+  star.className = "pixel-star";
+  star.textContent = Math.random() > .7 ? "✦" : "·";
   star.style.left = Math.random() * 100 + "%";
   star.style.top = Math.random() * 100 + "%";
   star.style.fontSize = (8 + Math.random() * 12) + "px";
-  star.style.animationDelay = Math.random() * 3 + "s";
+  star.style.animationDelay = Math.random() * 2 + "s";
   $("sky").appendChild(star);
 }
 
-// Floating hearts appear throughout the experience.
+// Floating pixel-style symbols.
 function createHeart() {
   const heart = document.createElement("span");
   heart.className = "float-heart";
-  heart.textContent = ["♡", "♥", "✧", "💜"][Math.floor(Math.random() * 4)];
+  heart.textContent = ["♡", "♥", "✦", "💜"][
+    Math.floor(Math.random() * 4)
+  ];
   heart.style.left = Math.random() * 100 + "%";
-  heart.style.fontSize = (14 + Math.random() * 19) + "px";
-  heart.style.animationDuration = (5 + Math.random() * 5) + "s";
+  heart.style.animationDuration = (5 + Math.random() * 4) + "s";
   $("hearts").appendChild(heart);
-  setTimeout(() => heart.remove(), 10000);
+  setTimeout(() => heart.remove(), 9500);
 }
-setInterval(createHeart, 850);
+
+setInterval(createHeart, 1000);
 
 const sweetMessages = [
   "A little star for the girl who lights up my world. 💜",
@@ -442,29 +664,35 @@ let collected = 0;
 
 function startGame() {
   show("game");
+
   if ($("gameBoard").children.length) return;
 
   for (let i = 0; i < 9; i++) {
     const btn = document.createElement("button");
     btn.className = "star-card";
     btn.textContent = ["✧", "☆", "⋆", "✦", "·"][i % 5];
+    btn.type = "button";
     btn.setAttribute("aria-label", "Find a magical star");
 
     btn.onclick = () => {
-      if (btn.classList.contains("collected") || collected >= 5) return;
+      if (btn.disabled || collected >= 5) return;
 
       btn.classList.add("collected");
       btn.textContent = "💜";
       btn.disabled = true;
+      btn.setAttribute("aria-label", "Star collected");
 
       $("gameMessage").textContent = sweetMessages[collected];
+
       collected++;
       $("count").textContent = collected;
       $("bar").style.width = (collected * 20) + "%";
+      $("progress").setAttribute("aria-valuenow", collected);
 
       if (collected === 5) {
         $("gameMessage").textContent =
-          "You found all five stars! Butttttt.... the most precious thing in this universe is still you, Bangaram. ♡";
+          "You found all five stars! But the most precious thing in this universe is still you, Bangaram. ♡";
+
         $("continue").classList.remove("hidden");
         celebrate();
       }
@@ -475,11 +703,13 @@ function startGame() {
 }
 
 function showGallery() {
+  if (collected < 5) return;
   show("gallery");
   celebrate();
 }
 
 function openLetter() {
+  if (collected < 5) return;
   show("finale");
   celebrate();
 }
