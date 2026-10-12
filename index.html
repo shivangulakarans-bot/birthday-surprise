@@ -279,6 +279,48 @@ p {
     scroll-behavior: auto !important;
   }
 }
+
+  
+/* Fixed music and moon controls */
+#site-controls {
+  position: fixed;
+  right: 12px;
+  bottom: 12px;
+  z-index: 20;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 4px;
+}
+
+#site-controls .pixel-button {
+  margin: 0;
+  padding: 11px 13px;
+  font-size: 12px;
+}
+
+/* Hide the website while keeping the animated world visible */
+body.moon-mode main {
+  display: none;
+}
+
+/* Keep controls above everything */
+#site-controls {
+  pointer-events: auto;
+}
+
+@media (max-width: 560px) {
+  #site-controls {
+    right: 8px;
+    bottom: 8px;
+  }
+
+  #site-controls .pixel-button {
+    padding: 10px;
+    font-size: 10px;
+  }
+}
+
 </style>
 </head>
 
@@ -291,6 +333,27 @@ p {
 
 <div id="heart-rain"></div>
 
+<!-- Background music -->
+<audio id="bg-music" loop preload="none">
+  <source src="unnakul-naane-lofi.mp3" type="audio/mpeg">
+</audio>
+
+<!-- Always-visible controls -->
+<div id="site-controls">
+  <button class="pixel-button secondary-button"
+          id="moon-toggle"
+          onclick="toggleMoonMode()">
+    🌙 MOON MODE
+  </button>
+
+  <button class="pixel-button"
+          id="music-toggle"
+          onclick="toggleMusic()">
+    🎵 PLAY MUSIC
+  </button>
+</div>
+
+  
 <main>
   <section id="intro" class="active">
     <div class="panel">
@@ -1144,6 +1207,47 @@ function finalWish() {
       setTimeout(() => heart.remove(), 6500);
     }, i * 90);
   }
+}
+
+/* Background music */
+const music = document.getElementById("bg-music");
+const musicButton = document.getElementById("music-toggle");
+
+music.volume = 0.35;
+
+async function toggleMusic() {
+  if (music.paused) {
+    try {
+      await music.play();
+      musicButton.textContent = "⏸ PAUSE MUSIC";
+    } catch (error) {
+      musicButton.textContent = "🎵 TRY PLAYING AGAIN";
+      console.warn("Music could not start:", error);
+    }
+  } else {
+    music.pause();
+    musicButton.textContent = "🎵 PLAY MUSIC";
+  }
+}
+
+/* Start the music on the first adventure click */
+const originalStartGame = startGame;
+
+startGame = function () {
+  originalStartGame();
+  if (music.paused) {
+    toggleMusic();
+  }
+};
+
+/* Moon-only background mode */
+function toggleMoonMode() {
+  const enabled = document.body.classList.toggle("moon-mode");
+  const button = document.getElementById("moon-toggle");
+
+  button.textContent = enabled
+    ? "↩ RETURN TO WEBSITE"
+    : "🌙 MOON MODE";
 }
 
 drawMaze();
